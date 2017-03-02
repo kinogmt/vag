@@ -13,7 +13,7 @@ case $ID in
   "fedora") echo ::: fedora; DNF=dnf; DNFMNG="dnf config-manager";;
 esac
 
-if [ -f /home/vagrant ]; then
+if [ -d /home/vagrant ]; then
   VUSER=vagrant
 else
   VUSER=$ID
