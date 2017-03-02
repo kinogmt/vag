@@ -13,6 +13,12 @@ case $ID in
   "fedora") echo ::: fedora; DNF=dnf; DNFMNG="dnf config-manager";;
 esac
 
+if [ -f /home/vagrant ]; then
+  VUSER=vagrant
+else
+  VUSER=$ID
+fi
+
 # --- epel for centos ---
 if [ $ID == centos ]; then
   rpm -ivh https://dl.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-9.noarch.rpm
@@ -22,7 +28,7 @@ fi
 sed -i 's/SELINUX=enforcing/SELINUX=disabled/' /etc/selinux/config
 setenforce Permissive
 
-su $ID -c "cp /vagrant/screenrc /home/$ID/.screenrc"
+su ${VUSER} -c "cp /vagrant/screenrc /home/${VUSER}/.screenrc"
 
 # --- docker engine and other packages ---
 $DNFMNG \
