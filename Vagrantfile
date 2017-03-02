@@ -25,6 +25,7 @@ Vagrant.configure(2) do |config|
   end
 
   config.vm.provider :aws do |aws, override|
+    override.nfs.functional = false
     override.vm.box = "dummy"
     override.vm.box_url = "https://github.com/mitchellh/vagrant-aws/raw/master/dummy.box"
     case ENV['VAG_OS']
