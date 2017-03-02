@@ -1,0 +1,4 @@
+escape ^Tt
+hardstatus alwayslastline "[screen %n%?: %t%?] %h %c"
+defscrollback 10000
+

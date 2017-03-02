@@ -22,11 +22,13 @@ fi
 sed -i 's/SELINUX=enforcing/SELINUX=disabled/' /etc/selinux/config
 setenforce Permissive
 
+su $ID -c "cp /vagrant/screenrc /home/$ID/.screenrc"
+
 # --- docker engine and other packages ---
 $DNFMNG \
     --add-repo \
     https://docs.docker.com/engine/installation/linux/repo_files/$ID/docker.repo
-$DNF install -y docker-engine git avahi bind-utils emacs-nox unzip rlwrap
+$DNF install -y docker-engine git avahi bind-utils emacs-nox unzip rlwrap screen
 systemctl start docker
 systemctl enable docker
 systemctl start avahi-daemon
