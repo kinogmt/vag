@@ -19,8 +19,8 @@ Vagrant.configure(2) do |config|
         override.vm.box = "centos/7"
     end
 
-    libvirt.cpus = 2
-    libvirt.memory = 16384
+    libvirt.cpus = 4
+    libvirt.memory = 32768
     libvirt.machine_virtual_size = 50 # 50GB
   end
 
