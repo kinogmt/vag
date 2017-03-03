@@ -28,7 +28,9 @@ fi
 sed -i 's/SELINUX=enforcing/SELINUX=disabled/' /etc/selinux/config
 setenforce Permissive
 
-su ${VUSER} -c "cp /vagrant/screenrc /home/${VUSER}/.screenrc"
+if [ -d /vagrant/home ]; then
+  su ${VUSER} -c cp -a /vagrant/home/. /home/${VUSER}/
+fi
 
 # --- docker engine and other packages ---
 curl -o docker-ce.repo https://download.docker.com/linux/${ID}/docker-ce.repo
