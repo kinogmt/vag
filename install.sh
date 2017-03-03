@@ -29,7 +29,7 @@ sed -i 's/SELINUX=enforcing/SELINUX=disabled/' /etc/selinux/config
 setenforce Permissive
 
 if [ -d /vagrant/home ]; then
-  su ${VUSER} -c "cp -a /vagrant/home/. /home/${VUSER}/"
+  su ${VUSER} -c "cp -R /vagrant/home/. /home/${VUSER}/"
 fi
 
 # --- docker engine and other packages ---
