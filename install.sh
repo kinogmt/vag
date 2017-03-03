@@ -31,10 +31,9 @@ setenforce Permissive
 su ${VUSER} -c "cp /vagrant/screenrc /home/${VUSER}/.screenrc"
 
 # --- docker engine and other packages ---
-$DNFMNG \
-    --add-repo \
-    https://docs.docker.com/engine/installation/linux/repo_files/$ID/docker.repo
-$DNF install -y docker-engine git avahi bind-utils emacs-nox unzip rlwrap screen
+curl -o docker-ce.repo https://download.docker.com/linux/${ID}/docker-ce.repo
+$DNFMNG --add-repo docker-ce.repo
+$DNF install -y docker-ce git avahi bind-utils emacs-nox unzip rlwrap screen
 systemctl start docker
 systemctl enable docker
 systemctl start avahi-daemon
