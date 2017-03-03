@@ -47,7 +47,7 @@ Vagrant.configure(2) do |config|
         aws.ami = "ami-6d1c2007" # centos 7
     end
 
-    aws.instance_type = "m4.4xlarge"
+    aws.instance_type = "m4.2xlarge"
     aws.block_device_mapping = [{ 'DeviceName' => '/dev/sda1', 'Ebs.VolumeSize' => 50 }] # 50GB
 
     aws.security_groups = ["sg-9e2672e4"]
