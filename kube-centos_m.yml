@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: centosm
+spec:
+  containers:
+  - name: cld-contm
+    image: quay.io/cloudian/centos-ssh:jdk8
+    command: [ "/bin/sh", "-c", "service crond start; service dnsmasq start; /usr/sbin/sshd -D" ]
+    securityContext:
+      privileged: true
+  nodeSelector:
+    role: master
+
