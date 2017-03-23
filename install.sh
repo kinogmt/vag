@@ -47,3 +47,9 @@ usermod -a -G docker vagrant > /dev/null 2>&1
 curl -L https://github.com/docker/compose/releases/download/1.11.1/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
 chmod +x /usr/local/bin/docker-compose
 
+# --- kubernetese --- centos only for now
+if [ $ID == centos ]; then
+  cp /vagrant/kubernetes.repo /etc/yum.repos.d/kubernetes.repo
+  yum install -y kubelet kubeadm kubectl kubernetes-cni
+  systemctl enable kubelet && systemctl start kubelet
+fi
