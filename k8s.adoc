@@ -10,10 +10,23 @@ https://kubernetes.io/docs/getting-started-guides/kubeadm/
 master# kubeadm init --pod-network-cidr 10.244.0.0/16 --skip-preflight-checks
 --------------------------
 
+
+=== label master node
+
+--------------------------
+$ kubectl label nodes <master-node> role=master
+--------------------------
+
+=== remove "delegated" taint from master node
+
+--------------------------
+$ kubectl taint nodes <master-node> dedicated-
+--------------------------
+
 === start flannel
 
 --------------------------
-master# kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
+$ kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
 --------------------------
 
 === join
@@ -24,7 +37,25 @@ node1# kubeadm join --token=<token> <master-ip> --skip-preflight-checks
 
 
 
-=== reset
+=== start deployment
+
+--------------------------
+$ kubectl apply -f <deployment-file>
+--------------------------
+
+=== scale deployment
+
+--------------------------
+$ kubectl scale deployment <deployment-name> --replicas <num-replicas>
+--------------------------
+
+=== delete deployment
+
+--------------------------
+$ kubectl delete deployment <deployment-name>
+--------------------------
+
+=== reset cluster
 
 --------------------------
 master# kubeadm resest
