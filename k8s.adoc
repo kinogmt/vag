@@ -1,0 +1,31 @@
+== setup kubernetese
+
+=== install
+
+https://kubernetes.io/docs/getting-started-guides/kubeadm/
+
+=== start master
+
+--------------------------
+master# kubeadm init --pod-network-cidr 10.244.0.0/16 --skip-preflight-checks
+--------------------------
+
+=== start flannel
+
+--------------------------
+master# kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
+--------------------------
+
+=== join
+
+--------------------------
+node1# kubeadm join --token=<token> <master-ip> --skip-preflight-checks
+--------------------------
+
+
+
+=== reset
+
+--------------------------
+master# kubeadm resest
+--------------------------
