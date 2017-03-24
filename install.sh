@@ -53,3 +53,9 @@ if [ $ID == centos ]; then
   yum install -y kubelet kubeadm kubectl kubernetes-cni
   systemctl enable kubelet && systemctl start kubelet
 fi
+
+# --- network ---
+sysctl -w net.ipv6.conf.all.disable_ipv6=1
+sysctl -w net.ipv4.conf.all.forwarding=1
+sysctl -w net.ipv4.conf.all.route_localnet=1
+sudo iptables -P FORWARD ACCEPT
