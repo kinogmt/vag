@@ -8,10 +8,18 @@ spec:
       labels:
         app: centos
     spec:
+      volumes:
+      - name: sys
+        hostPath:
+          path: /sys
       containers:
       - name: cld-cont
         image: quay.io/cloudian/centos-ssh:jdk8
         command: [ "/bin/sh", "-c", "service crond start; service dnsmasq start; /usr/sbin/sshd -D" ]
         securityContext:
           privileged: true
+        volumeMounts:
+        - name: sys
+          mountPath: /sys
+          readOnly: false
 
