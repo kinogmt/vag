@@ -23,10 +23,21 @@ $ kubectl label nodes <master-node> role=master
 $ kubectl taint nodes <master-node> dedicated-
 --------------------------
 
+
 === start flannel
 
 --------------------------
 $ kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
+--------------------------
+
+=== fix iptables
+
+--------------------------
+node1# iptables -P FORWARD ACCEPT
+--------------------------
+
+--------------------------
+node2# iptables -P FORWARD ACCEPT
 --------------------------
 
 === join
