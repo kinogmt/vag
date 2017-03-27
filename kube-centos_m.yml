@@ -10,6 +10,8 @@ spec:
   containers:
   - name: cld-contm
     image: quay.io/cloudian/centos-ssh:jdk8
+    ports:
+    - containerPort: 8443
     command: [ "/bin/sh", "-c", "service crond start; service dnsmasq start; /usr/sbin/sshd -D" ]
     securityContext:
       privileged: true
