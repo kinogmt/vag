@@ -60,10 +60,10 @@ $ kubectl apply -f <deployment-file>
 $ kubectl scale deployment <deployment-name> --replicas <num-replicas>
 --------------------------
 
-=== port forward
+=== expose pod's ports
 
 --------------------------
-$ kubectl port-forward <pod-name> <host-port>:<container-port>
+$ kubectl expose pods <pod-name> --external-ip <external-ip-address>
 --------------------------
 
 === delete deployment
