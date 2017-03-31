@@ -35,7 +35,7 @@ fi
 # --- docker engine and other packages ---
 curl -o docker-ce.repo https://download.docker.com/linux/${ID}/docker-ce.repo
 $DNFMNG --add-repo docker-ce.repo
-$DNF install -y docker-ce git avahi bind-utils emacs-nox unzip rlwrap screen
+$DNF install -y docker-ce git avahi bind-utils emacs-nox unzip rlwrap screen jq
 systemctl start docker
 systemctl enable docker
 systemctl start avahi-daemon
@@ -55,8 +55,12 @@ if [ $ID == centos ]; then
 fi
 
 # --- consul and nomad ---
-curl -sSL https://releases.hashicorp.com/consul/0.7.5/consul_0.7.5_linux_amd64.zip -o consul.zip
-curl -sSL https://releases.hashicorp.com/nomad/0.5.5/nomad_0.5.5_linux_amd64.zip -o nomad.zip
+CHECKPOINT_URL="https://checkpoint-api.hashicorp.com/v1/check"
+CONSUL_VER=$(curl -s "${CHECKPOINT_URL}"/consul | jq .current_version | tr -d '"')
+NOMAD_VER=$(curl -s "${CHECKPOINT_URL}"/nomad | jq .current_version | tr -d '"')
+
+curl -sSL https://releases.hashicorp.com/consul/${CONSUL_VER}/consul_${CONSUL_VER}_linux_amd64.zip -o consul.zip
+curl -sSL https://releases.hashicorp.com/nomad/${NOMAD_VER}/nomad_${NOMAD_VER}_linux_amd64.zip -o nomad.zip
 unzip consul.zip
 unzip nomad.zip
 sudo chmod +x consul
