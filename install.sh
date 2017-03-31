@@ -54,6 +54,19 @@ if [ $ID == centos ]; then
   systemctl enable kubelet && systemctl start kubelet
 fi
 
+# --- consul and nomad ---
+curl -sSL https://releases.hashicorp.com/consul/0.7.5/consul_0.7.5_linux_amd64.zip -o consul.zip
+curl -sSL https://releases.hashicorp.com/nomad/0.5.5/nomad_0.5.5_linux_amd64.zip -o nomad.zip
+unzip consul.zip
+unzip nomad.zip
+sudo chmod +x consul
+sudo chmod +x nomad
+sudo mv consul /usr/bin/
+sudo mv nomad /usr/bin/
+sudo mkdir -p /etc/nomad.d
+sudo chmod a+w /etc/nomad.d
+
+
 # --- network ---
 sysctl -w net.ipv6.conf.all.disable_ipv6=1
 sysctl -w net.ipv4.conf.all.forwarding=1
