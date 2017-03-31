@@ -56,19 +56,15 @@ fi
 
 # --- consul and nomad ---
 CHECKPOINT_URL="https://checkpoint-api.hashicorp.com/v1/check"
-CONSUL_VER=$(curl -s "${CHECKPOINT_URL}"/consul | jq .current_version | tr -d '"')
-NOMAD_VER=$(curl -s "${CHECKPOINT_URL}"/nomad | jq .current_version | tr -d '"')
-
-curl -sSL https://releases.hashicorp.com/consul/${CONSUL_VER}/consul_${CONSUL_VER}_linux_amd64.zip -o consul.zip
-curl -sSL https://releases.hashicorp.com/nomad/${NOMAD_VER}/nomad_${NOMAD_VER}_linux_amd64.zip -o nomad.zip
-unzip consul.zip
-unzip nomad.zip
-sudo chmod +x consul
-sudo chmod +x nomad
-sudo mv consul /usr/bin/
-sudo mv nomad /usr/bin/
-sudo mkdir -p /etc/nomad.d
-sudo chmod a+w /etc/nomad.d
+for COMP in consul nomad; do
+  T_VER=$(curl -s "${CHECKPOINT_URL}/${COMP}" | jq .current_version | tr -d '"')
+  curl -sSL https://releases.hashicorp.com/${COMP}/${T_VER}/${COMP}_${T_VER}_linux_amd64.zip -o ${COMP}.zip
+  unzip ${COMP}.zip
+  sudo chmod +x ${COMP}
+  sudo mv ${COMP} /usr/bin/
+  sudo mkdir -p /etc/${COMP}.d
+  sudo chmod a+w /etc/${COMP}.d
+done
 
 
 # --- network ---
