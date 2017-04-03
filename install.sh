@@ -49,7 +49,7 @@ chmod +x /usr/local/bin/docker-compose
 
 # --- kubernetese --- centos only for now
 if [ $ID == centos ]; then
-  cp /vagrant/kubernetes.repo /etc/yum.repos.d/kubernetes.repo
+  $DNFMNG --add-repo /vagrant/kubernetes.repo
   yum install -y kubelet kubeadm kubectl kubernetes-cni
   systemctl enable kubelet && systemctl start kubelet
 fi
