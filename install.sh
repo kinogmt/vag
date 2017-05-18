@@ -19,9 +19,10 @@ else
   VUSER=$ID
 fi
 
-# --- epel for centos ---
+# --- epel and uis for centos ---
 if [ $ID == centos ]; then
   rpm -ivh https://dl.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-9.noarch.rpm
+  rpm -ivh https://dl.iuscommunity.org/pub/ius/stable/CentOS/7/x86_64/ius-release-1.0-14.ius.centos7.noarch.rpm
 fi
 
 # --- misc -------------------------
@@ -35,7 +36,7 @@ fi
 # --- docker engine and other packages ---
 curl -o docker-ce.repo https://download.docker.com/linux/${ID}/docker-ce.repo
 $DNFMNG --add-repo docker-ce.repo
-$DNF install -y docker-ce git avahi bind-utils emacs-nox unzip rlwrap screen jq \
+$DNF install -y docker-ce git2u avahi bind-utils emacs-nox unzip rlwrap screen jq \
                 openssl-devel curl-devel expat-devel ncurses-devel
 systemctl start docker
 systemctl enable docker
