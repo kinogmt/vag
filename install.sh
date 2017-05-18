@@ -35,7 +35,8 @@ fi
 # --- docker engine and other packages ---
 curl -o docker-ce.repo https://download.docker.com/linux/${ID}/docker-ce.repo
 $DNFMNG --add-repo docker-ce.repo
-$DNF install -y docker-ce git avahi bind-utils emacs-nox unzip rlwrap screen jq
+$DNF install -y docker-ce git avahi bind-utils emacs-nox unzip rlwrap screen jq \
+                openssl-devel curl-devel expat-devel ncurses-devel
 systemctl start docker
 systemctl enable docker
 systemctl start avahi-daemon
@@ -50,7 +51,7 @@ chmod +x /usr/local/bin/docker-compose
 # --- kubernetese --- centos only for now
 if [ $ID == centos ]; then
   $DNFMNG --add-repo /vagrant/kubernetes.repo
-  yum install -y kubelet kubeadm kubectl kubernetes-cni
+  $DNF install -y kubelet kubeadm kubectl kubernetes-cni
   systemctl enable kubelet && systemctl start kubelet
 fi
 
