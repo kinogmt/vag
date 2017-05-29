@@ -44,7 +44,7 @@ Vagrant.configure(2) do |config|
       when 'fedora' then
         aws.ami = "ami-9d8d438b" # fedora 25
       else
-        aws.ami = "ami-6d1c2007" # centos 7
+        aws.ami = "ami-46c1b650" # centos 7.3
     end
 
     case ENV['VAG_AWS_IT']
