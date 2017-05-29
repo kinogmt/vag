@@ -14,7 +14,7 @@ Vagrant.configure(2) do |config|
   config.vm.provider :libvirt do |libvirt, override|
     case ENV['VAG_OS']
       when 'fedora' then
-        override.vm.box = "fedora/24-cloud-base"
+        override.vm.box = "fedora/25-cloud-base"
       else
         override.vm.box = "centos/7"
     end
@@ -42,7 +42,7 @@ Vagrant.configure(2) do |config|
 
     case ENV['VAG_OS']
       when 'fedora' then
-        aws.ami = "ami-9d8d438b" # fedora 25
+        aws.ami = "ami-e5ad85f2" # fedora 25
       else
         aws.ami = "ami-46c1b650" # centos 7.3
     end
