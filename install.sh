@@ -36,8 +36,12 @@ fi
 # --- docker engine and other packages ---
 curl -o docker-ce.repo https://download.docker.com/linux/${ID}/docker-ce.repo
 $DNFMNG --add-repo docker-ce.repo
-$DNF install -y docker-ce git2u avahi bind-utils emacs-nox unzip rlwrap screen jq \
-                openssl-devel curl-devel expat-devel ncurses-devel
+PKGS="docker-ce avahi bind-utils emacs-nox unzip rlwrap screen jq \
+      openssl-devel curl-devel expat-devel ncurses-devel"
+if [ $ID == centos ]; then
+  PKGS="$PKGS git2u"
+fi
+$DNF install -y $PKGS
 systemctl start docker
 systemctl enable docker
 systemctl start avahi-daemon
@@ -49,24 +53,25 @@ usermod -a -G docker vagrant > /dev/null 2>&1
 curl -L https://github.com/docker/compose/releases/download/1.11.1/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
 chmod +x /usr/local/bin/docker-compose
 
-# --- kubernetese --- centos only for now
+# --- centos only for now ---
 if [ $ID == centos ]; then
+  # --- kubernetese ---
   $DNFMNG --add-repo /vagrant/kubernetes.repo
   $DNF install -y kubelet kubeadm kubectl kubernetes-cni
   systemctl enable kubelet && systemctl start kubelet
-fi
 
-# --- consul and nomad ---
-CHECKPOINT_URL="https://checkpoint-api.hashicorp.com/v1/check"
-for COMP in consul nomad; do
-  T_VER=$(curl -s "${CHECKPOINT_URL}/${COMP}" | jq .current_version | tr -d '"')
-  curl -sSL https://releases.hashicorp.com/${COMP}/${T_VER}/${COMP}_${T_VER}_linux_amd64.zip -o ${COMP}.zip
-  unzip ${COMP}.zip
-  sudo chmod +x ${COMP}
-  sudo mv ${COMP} /usr/bin/
-  sudo mkdir -p /etc/${COMP}.d
-  sudo chmod a+w /etc/${COMP}.d
-done
+  # --- consul and nomad ---
+  CHECKPOINT_URL="https://checkpoint-api.hashicorp.com/v1/check"
+  for COMP in consul nomad; do
+    T_VER=$(curl -s "${CHECKPOINT_URL}/${COMP}" | jq .current_version | tr -d '"')
+    curl -sSL https://releases.hashicorp.com/${COMP}/${T_VER}/${COMP}_${T_VER}_linux_amd64.zip -o ${COMP}.zip
+    unzip ${COMP}.zip
+    sudo chmod +x ${COMP}
+    sudo mv ${COMP} /usr/bin/
+    sudo mkdir -p /etc/${COMP}.d
+    sudo chmod a+w /etc/${COMP}.d
+  done
+fi
 
 
 # --- network ---
