@@ -56,8 +56,8 @@ Vagrant.configure(2) do |config|
 
     aws.block_device_mapping = [{ 'DeviceName' => '/dev/sda1', 'Ebs.VolumeSize' => 50 }] # 50GB
 
-    aws.security_groups = ["sg-9e2672e4"]
-    aws.subnet_id = "subnet-fa05f38d"
+    aws.security_groups = ["sg-5389a22d"]
+    aws.subnet_id = "subnet-407eb41a"
     aws.associate_public_ip = true
     aws.elastic_ip = false
     aws.user_data =<<USER_DATA
