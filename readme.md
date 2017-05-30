@@ -47,6 +47,26 @@ $ vagrant up --provider=aws v1
 $ VAG_OS=fedora vagrant up --provider=aws v1
 ```
 
+## ssh to centos
+```
+$  vagrant ssh v1
+```
+
+## ssh to fedora
+```
+$ VAG_OS=fedora vagrant ssh v1
+```
+
+## ssh to centos on aws
+```
+$ vagrant up --provider=aws v1
+```
+
+## ssh to fedora on aws
+```
+$ VAG_OS=fedora vagrant up --provider=aws v1
+```
+
 ## environment variables
 
 ```
