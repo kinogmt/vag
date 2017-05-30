@@ -42,7 +42,7 @@ fi
 DOCKERPKG=docker
 
 if [ $DOCKERPKG == docker ]; then # old docker
-  chown root:dockerroot /var/run/docker.info
+  chown root:dockerroot /var/run/docker.sock
   DR=dockerroot
 else
   DR=docker
