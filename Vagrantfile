@@ -1,6 +1,11 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
+AMIFEDORA = "ami-e5ad85f2" # fedora 25
+AMICENTOS = "ami-46c1b650" # centos 7.3
+AWSSG="sg-5389a22d"        # AWS security group
+AWSSN="subnet-407eb41a"    # AWS subnet
+
 Vagrant.configure(2) do |config|
 
   (1..3).each do |i|
@@ -42,9 +47,9 @@ Vagrant.configure(2) do |config|
 
     case ENV['VAG_OS']
       when 'fedora' then
-        aws.ami = "ami-e5ad85f2" # fedora 25
+        aws.ami = AMIFEDORA
       else
-        aws.ami = "ami-46c1b650" # centos 7.3
+        aws.ami = AMICENTOS
     end
 
     case ENV['VAG_AWS_IT']
@@ -56,8 +61,8 @@ Vagrant.configure(2) do |config|
 
     aws.block_device_mapping = [{ 'DeviceName' => '/dev/sda1', 'Ebs.VolumeSize' => 50 }] # 50GB
 
-    aws.security_groups = ["sg-5389a22d"]
-    aws.subnet_id = "subnet-407eb41a"
+    aws.security_groups = [AWSSG]
+    aws.subnet_id = AWSSN
     aws.associate_public_ip = true
     aws.elastic_ip = false
     aws.user_data =<<USER_DATA
