@@ -2,8 +2,7 @@
 
 Vagrant file and some scripts to start docker, k8s, nomad and consul
 on CentOS or Fedora.
-It is supporting only AWS and libvert now
-but it looks not very difficult to use other providers.
+It is supporting only AWS and libvert now.
 
 Note that k8s, nomad and consul are installed and started
 only on *CentOS* for now.
