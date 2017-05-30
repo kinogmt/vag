@@ -41,13 +41,6 @@ fi
 # --- use centos/fedora repo for docker ---
 DOCKERPKG=docker
 
-if [ $DOCKERPKG == docker ]; then # old docker
-  chown root:dockerroot /var/run/docker.sock
-  DR=dockerroot
-else
-  DR=docker
-fi
-
 PKGS="$DOCKERPKG avahi bind-utils emacs-nox unzip rlwrap screen jq \
       openssl-devel curl-devel expat-devel ncurses-devel"
 if [ $ID == centos ]; then
@@ -58,6 +51,13 @@ systemctl start docker
 systemctl enable docker
 systemctl start avahi-daemon
 systemctl enable avahi-daemon
+
+if [ $DOCKERPKG == docker ]; then # old docker
+  chown root:dockerroot /var/run/docker.sock
+  DR=dockerroot
+else
+  DR=docker
+fi
 usermod -a -G $DR $ID > /dev/null 2>&1
 usermod -a -G $DR vagrant > /dev/null 2>&1
 
