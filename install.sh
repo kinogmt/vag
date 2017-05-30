@@ -34,7 +34,7 @@ if [ -d /vagrant/home ]; then
 fi
 
 echo DOCKER_PKG_REPO: $DOCKER_PKG_REPO
-if [ DOCKER_PKG_REPO == docker.com ]; then
+if [ $DOCKER_PKG_REPO == docker.com ]; then
   # --- use docker.com official repo --------
   curl -o docker-ce.repo https://download.docker.com/linux/${ID}/docker-ce.repo
   $DNFMNG --add-repo docker-ce.repo
