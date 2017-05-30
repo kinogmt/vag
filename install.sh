@@ -34,9 +34,14 @@ if [ -d /vagrant/home ]; then
 fi
 
 # --- docker engine and other packages ---
-curl -o docker-ce.repo https://download.docker.com/linux/${ID}/docker-ce.repo
-$DNFMNG --add-repo docker-ce.repo
-PKGS="docker-ce avahi bind-utils emacs-nox unzip rlwrap screen jq \
+#curl -o docker-ce.repo https://download.docker.com/linux/${ID}/docker-ce.repo
+#$DNFMNG --add-repo docker-ce.repo
+#DOCKERPKG=docker-ce
+
+# --- use centos/fedora repo for docker ---
+DOCKERPKG=docker
+
+PKGS="$DOCKERPKG avahi bind-utils emacs-nox unzip rlwrap screen jq \
       openssl-devel curl-devel expat-devel ncurses-devel"
 if [ $ID == centos ]; then
   PKGS="$PKGS git2u"
