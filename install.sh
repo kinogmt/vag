@@ -52,12 +52,13 @@ systemctl enable docker
 systemctl start avahi-daemon
 systemctl enable avahi-daemon
 
-if [ $DOCKERPKG == docker ]; then # old docker
-  chown root:dockerroot /var/run/docker.sock
-  DR=dockerroot
+if [ $DOCKERPKG == docker ]; then
+  DR=dockerroot # old docker such as 1.12
 else
-  DR=docker
+  DR=docker     # new docker such as 17.03
 fi
+groupadd -f $DR
+chown root:$DR /var/run/docker.sock
 usermod -a -G $DR $ID > /dev/null 2>&1
 usermod -a -G $DR vagrant > /dev/null 2>&1
 
