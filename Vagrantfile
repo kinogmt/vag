@@ -25,6 +25,9 @@ SKEY = envd('AWS_SECRET_ACCESS_KEY', 'none')
 KEYPAIR = envd('AWS_KEYPAIR_NAME', 'none')
 KEYPATH = envd('AWS_KEY_PATH', "~/.ssh/aws_ssh_key")
 
+DOCKER_PKG_REPO = envd('DOCKER_PKG_REPO', 'os') # os:         OS repository
+                                                # docker.com: docker.com repository
+
 case OS
   when 'fedora' then
     LIBVIRTBOX = "fedora/25-cloud-base"
@@ -43,7 +46,7 @@ Vagrant.configure(2) do |config|
     config.vm.define "v#{i}" do |node|
       node.vm.provision :shell, inline: "hostname v#{i}"
       node.vm.provision :shell, inline: "echo v#{i} > /etc/hostname"
-      node.vm.provision "shell", path: "install.sh"
+      node.vm.provision "shell", path: "install.sh", env: {"DOCKER_PKG_REPO" => DOCKER_PKG_REPO}
     end
   end
 

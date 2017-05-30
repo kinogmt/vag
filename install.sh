@@ -33,13 +33,15 @@ if [ -d /vagrant/home ]; then
   su ${VUSER} -c "cp -R /vagrant/home/. /home/${VUSER}/"
 fi
 
-# --- docker engine and other packages ---
-#curl -o docker-ce.repo https://download.docker.com/linux/${ID}/docker-ce.repo
-#$DNFMNG --add-repo docker-ce.repo
-#DOCKERPKG=docker-ce
-
-# --- use centos/fedora repo for docker ---
-DOCKERPKG=docker
+if [ DOCKER_PKG_REPO == docker.com ]; then
+  # --- use docker.com official repo --------
+  curl -o docker-ce.repo https://download.docker.com/linux/${ID}/docker-ce.repo
+  $DNFMNG --add-repo docker-ce.repo
+  DOCKERPKG=docker-ce
+else
+  # --- use centos/fedora repo for docker ---
+  DOCKERPKG=docker
+fi
 
 PKGS="$DOCKERPKG avahi bind-utils emacs-nox unzip rlwrap screen jq \
       openssl-devel curl-devel expat-devel ncurses-devel"
@@ -47,6 +49,7 @@ if [ $ID == centos ]; then
   PKGS="$PKGS git2u"
 fi
 $DNF install -y $PKGS
+
 systemctl start docker
 systemctl enable docker
 systemctl start avahi-daemon
