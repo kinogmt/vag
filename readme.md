@@ -47,3 +47,20 @@ $ vagrant up --provider=aws v1
 $ VAG_OS=fedora vagrant up --provider=aws v1
 ```
 
+## envrinment variables
+
+```
+| variable              | value                | default            |
+| --------------------- | -------------------- | ------------------ |
+| VAG_OS                | centos or fedora     | centos             |
+| AWS_ACCESS_KEY_ID     | aws access key       | none               |
+| AWS_SECRET_ACCESS_KEY | aws secret key       | none               |
+| AWS_KEYPAIR_NAME      | aws key pair name    | none               |
+| AWS_KEY_PATH          | aws key path         | ~/.ssh/aws_ssh_key |
+| AWS_AMI_FEDORA        | aws ami for fedora   | ami-e5ad85f2       |
+| AWS_AMI_CENTOS        | aws ami for centos   | ami-46c1b650       |
+| AWS_SG                | aws secrity group    | sg-5389a22d        |
+| AWS_SN                | aws subnet           | subnet-407eb41a    |
+| AWS_IT                | aws instance type    | m4.2xlarge         |
+```
+
