@@ -1,5 +1,10 @@
 # vagrant files for Fedora and CentOS
 
+Vagrant file ans some scripts to start docker, k8s, nomad and consul
+on CentOS or Fedora.
+It is supporting only AWS and libvert now
+but it looks not very difficult to use other providers.
+
 ## install packages for vagrant and libvirt plugin(kvm/qemu)
 
 ```
