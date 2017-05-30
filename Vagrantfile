@@ -28,6 +28,7 @@ KEYPATH = envd("AWS_KEY_PATH", "~/.ssh/aws_ssh_key")
 DOCKER_PKG_REPO = envd("DOCKER_PKG_REPO", "os") # os:         OS repository
                                                 # docker.com: docker.com repository
 
+puts "os: " + OS
 case OS
   when "fedora" then
     LIBVIRTBOX = "fedora/25-cloud-base"
@@ -38,6 +39,7 @@ case OS
     AMI = AMICENTOS
     AWSUSER = "centos"
 end
+puts "ssh user: " + AWSUSER
 
 # -----------------------------------------------------
 Vagrant.configure(2) do |config|
