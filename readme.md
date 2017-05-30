@@ -62,5 +62,9 @@ $ VAG_OS=fedora vagrant up --provider=aws v1
 | AWS_SG                | aws secrity group    | sg-5389a22d        |
 | AWS_SN                | aws subnet           | subnet-407eb41a    |
 | AWS_IT                | aws instance type    | m4.2xlarge         |
+| DOCKER_PKG_REPO       | os or docker.com(*1) | os                 |
 ```
+
+(\*1) Value "os" uses default repository of OS(cetnos or fedora).
+Value "docker.com" uses repository of docker.com.
 
