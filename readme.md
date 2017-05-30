@@ -5,6 +5,9 @@ on CentOS or Fedora.
 It is supporting only AWS and libvert now
 but it looks not very difficult to use other providers.
 
+Note that k8s, nomad and consul are installed and started
+only on *CentOS* for now.
+
 ## install packages for vagrant and libvirt plugin(kvm/qemu)
 
 ```
