@@ -39,7 +39,6 @@ case OS
     AMI = AMICENTOS
     AWSUSER = "centos"
 end
-puts "ssh user: " + AWSUSER
 
 # -----------------------------------------------------
 Vagrant.configure(2) do |config|
