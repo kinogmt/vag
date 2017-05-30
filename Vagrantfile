@@ -12,24 +12,24 @@ def envd(name, default)
 end
 
 # --- configuration paramters -------------------------
-OS = envd('VAG_OS', "centos")
+OS = envd("VAG_OS", "centos")
 
-AMIFEDORA = envd('AWS_AMI_FEDORA', "ami-e5ad85f2") # fedora 25/us-east-1
-AMICENTOS = envd('AWS_AMI_CENTOS', "ami-46c1b650") # centos 7.3/us-east-1
-AWSSG = envd('AWS_SG', "sg-5389a22d")       # AWS security group/us-east-1
-AWSSN = envd('AWS_SN', "subnet-407eb41a")   # AWS subnet/us-east-1
-AWSIT = envd('AWS_IT', "m4.2xlarge")
+AMIFEDORA = envd("AWS_AMI_FEDORA", "ami-e5ad85f2") # fedora 25/us-east-1
+AMICENTOS = envd("AWS_AMI_CENTOS", "ami-46c1b650") # centos 7.3/us-east-1
+AWSSG = envd("AWS_SG", "sg-5389a22d")       # AWS security group/us-east-1
+AWSSN = envd("AWS_SN", "subnet-407eb41a")   # AWS subnet/us-east-1
+AWSIT = envd("AWS_IT", "m4.2xlarge")
 
-AKEY = envd('AWS_ACCESS_KEY_ID', 'none')
-SKEY = envd('AWS_SECRET_ACCESS_KEY', 'none')
-KEYPAIR = envd('AWS_KEYPAIR_NAME', 'none')
-KEYPATH = envd('AWS_KEY_PATH', "~/.ssh/aws_ssh_key")
+AKEY = envd("AWS_ACCESS_KEY_ID", "none")
+SKEY = envd("AWS_SECRET_ACCESS_KEY", "none")
+KEYPAIR = envd("AWS_KEYPAIR_NAME", "none")
+KEYPATH = envd("AWS_KEY_PATH", "~/.ssh/aws_ssh_key")
 
-DOCKER_PKG_REPO = envd('DOCKER_PKG_REPO', 'os') # os:         OS repository
+DOCKER_PKG_REPO = envd("DOCKER_PKG_REPO", "os") # os:         OS repository
                                                 # docker.com: docker.com repository
 
 case OS
-  when 'fedora' then
+  when "fedora" then
     LIBVIRTBOX = "fedora/25-cloud-base"
     AMI = AMIFEDORA
     AWSUSER = "fedora"
@@ -70,7 +70,7 @@ Vagrant.configure(2) do |config|
     aws.ami = AMI
     aws.instance_type = AWSIT
 
-    aws.block_device_mapping = [{ 'DeviceName' => '/dev/sda1', 'Ebs.VolumeSize' => 50 }] # 50GB
+    aws.block_device_mapping = [{ "DeviceName" => "/dev/sda1", "Ebs.VolumeSize" => 50 }] # 50GB
 
     aws.security_groups = [AWSSG]
     aws.subnet_id = AWSSN
@@ -78,7 +78,7 @@ Vagrant.configure(2) do |config|
     aws.elastic_ip = false
     aws.user_data =<<USER_DATA
 #!/bin/sh
-sed -i -e 's/^\\(Defaults.*requiretty\\)/#\\1/' /etc/sudoers
+sed -i -e "s/^\\(Defaults.*requiretty\\)/#\\1/" /etc/sudoers
 USER_DATA
   end
 end
