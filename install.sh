@@ -41,6 +41,13 @@ fi
 # --- use centos/fedora repo for docker ---
 DOCKERPKG=docker
 
+if [ $DOCKERPKG == docker ]; then # old docker
+  chown root:dockerroot /var/run/docker.info
+  DR=dockerroot
+else
+  DR=docker
+fi
+
 PKGS="$DOCKERPKG avahi bind-utils emacs-nox unzip rlwrap screen jq \
       openssl-devel curl-devel expat-devel ncurses-devel"
 if [ $ID == centos ]; then
@@ -51,8 +58,8 @@ systemctl start docker
 systemctl enable docker
 systemctl start avahi-daemon
 systemctl enable avahi-daemon
-usermod -a -G docker $ID > /dev/null 2>&1
-usermod -a -G docker vagrant > /dev/null 2>&1
+usermod -a -G $DR $ID > /dev/null 2>&1
+usermod -a -G $DR vagrant > /dev/null 2>&1
 
 # --- docker compose ---
 curl -L https://github.com/docker/compose/releases/download/1.11.1/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
