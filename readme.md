@@ -66,5 +66,5 @@ $ VAG_OS=fedora vagrant up --provider=aws v1
 ```
 
 (\*1) Value "os" uses default repository of OS(cetnos or fedora).
-Value "docker.com" uses repository of docker.com.
+Value "docker.com" uses repository of docker.com to install Docker Engine.
 
