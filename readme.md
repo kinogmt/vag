@@ -47,7 +47,7 @@ $ vagrant up --provider=aws v1
 $ VAG_OS=fedora vagrant up --provider=aws v1
 ```
 
-## envrinment variables
+## environment variables
 
 ```
 | variable              | value                | default            |
