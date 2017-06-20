@@ -18,7 +18,7 @@ AMIFEDORA = envd("AWS_AMI_FEDORA", "ami-e5ad85f2") # fedora 25/us-east-1
 AMICENTOS = envd("AWS_AMI_CENTOS", "ami-46c1b650") # centos 7.3/us-east-1
 AWSSG = envd("AWS_SG", "sg-5389a22d")       # AWS security group/us-east-1
 AWSSN = envd("AWS_SN", "subnet-407eb41a")   # AWS subnet/us-east-1
-AWSIT = envd("AWS_IT", "m4.2xlarge")
+AWSIT = envd("AWS_IT", "m4.4xlarge")
 
 AKEY = envd("AWS_ACCESS_KEY_ID", "none")
 SKEY = envd("AWS_SECRET_ACCESS_KEY", "none")
