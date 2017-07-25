@@ -21,8 +21,8 @@ fi
 
 # --- epel and uis for centos ---
 if [ $ID == centos ]; then
-  rpm -ivh https://dl.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-9.noarch.rpm
-  rpm -ivh https://dl.iuscommunity.org/pub/ius/stable/CentOS/7/x86_64/ius-release-1.0-14.ius.centos7.noarch.rpm
+  rpm -ivh https://dl.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-10.noarch.rpm
+  rpm -ivh https://dl.iuscommunity.org/pub/ius/stable/CentOS/7/x86_64/ius-release-1.0-15.ius.centos7.noarch.rpm
 fi
 
 # --- misc -------------------------
