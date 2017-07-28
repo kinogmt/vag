@@ -54,6 +54,13 @@ Vagrant.configure(2) do |config|
     end
   end
 
+  config.vm.provider "virtualbox" do |v, override|
+    override.vm.box = LIBVIRTBOX
+    v.cpus = 4
+    v.memory = 16384
+  end 
+
+
   config.vm.provider :libvirt do |libvirt, override|
     override.vm.box = LIBVIRTBOX
     libvirt.cpus = 4
