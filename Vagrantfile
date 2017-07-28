@@ -52,8 +52,8 @@ Vagrant.configure(2) do |config|
       node.vm.provision :shell, inline: "echo v#{i} > /etc/hostname"
       node.vm.provision "shell", path: INSTALL, env: {"DOCKER_PKG_REPO" => DOCKER_PKG_REPO}
       # --- port forwarding for virtualbox --------------------
-      config.vm.network "forwarded_port", guest: 22, host: 7221+i, id: "ssh"
-      config.vm.network "forwarded_port", guest: 8443, host: 8442+i, id: "https"
+      node.vm.network "forwarded_port", guest: 22, host: 7221+i, id: "ssh"
+      node.vm.network "forwarded_port", guest: 8443, host: 8442+i, id: "https"
     end
   end
 
