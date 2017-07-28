@@ -54,6 +54,18 @@ $ vagrant up --provider=aws v1
 $ VAG_OS=fedora vagrant up --provider=aws v1
 ```
 
+## start centos on virtualbox
+
+```
+$ vagrant up --provider=virtualbox v1
+```
+
+## start fedora on virtualbox
+
+```
+$ VAG_OS=fedora vagrant up --provider=virtualbox v1
+```
+
 ## ssh to centos
 ```
 $  vagrant ssh v1
