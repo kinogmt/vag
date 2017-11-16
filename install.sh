@@ -74,22 +74,26 @@ chmod +x /usr/local/bin/docker-compose
 
 # --- centos only for now ---
 if [ $ID == centos ]; then
-  # --- kubernetese ---
-  $DNFMNG --add-repo /vagrant/kubernetes.repo
-  $DNF install -y kubelet kubeadm kubectl kubernetes-cni
-  systemctl enable kubelet && systemctl start kubelet
+  if [ ttt$K8S != ttt ]; then
+    # --- kubernetese ---
+    $DNFMNG --add-repo /vagrant/kubernetes.repo
+    $DNF install -y kubelet kubeadm kubectl kubernetes-cni
+    systemctl enable kubelet && systemctl start kubelet
+  fi
 
-  # --- consul and nomad ---
-  CHECKPOINT_URL="https://checkpoint-api.hashicorp.com/v1/check"
-  for COMP in consul nomad; do
-    T_VER=$(curl -s "${CHECKPOINT_URL}/${COMP}" | jq .current_version | tr -d '"')
-    curl -sSL https://releases.hashicorp.com/${COMP}/${T_VER}/${COMP}_${T_VER}_linux_amd64.zip -o ${COMP}.zip
-    unzip ${COMP}.zip
-    sudo chmod +x ${COMP}
-    sudo mv ${COMP} /usr/bin/
-    sudo mkdir -p /etc/${COMP}.d
-    sudo chmod a+w /etc/${COMP}.d
-  done
+  if [ ttt$NOMAD != ttt ]; then
+    # --- consul and nomad ---
+    CHECKPOINT_URL="https://checkpoint-api.hashicorp.com/v1/check"
+    for COMP in consul nomad; do
+      T_VER=$(curl -s "${CHECKPOINT_URL}/${COMP}" | jq .current_version | tr -d '"')
+      curl -sSL https://releases.hashicorp.com/${COMP}/${T_VER}/${COMP}_${T_VER}_linux_amd64.zip -o ${COMP}.zip
+      unzip ${COMP}.zip
+      sudo chmod +x ${COMP}
+      sudo mv ${COMP} /usr/bin/
+      sudo mkdir -p /etc/${COMP}.d
+      sudo chmod a+w /etc/${COMP}.d
+    done
+  fi
 fi
 
 
