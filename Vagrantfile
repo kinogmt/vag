@@ -30,8 +30,8 @@ DOCKER_PKG_REPO = envd("DOCKER_PKG_REPO", "os") # os:         OS repository
                                                 # docker.com: docker.com repository
 INSTALL = envd("INST", "install.sh")
 
-K8S = envd("K8S", "no")
-NOMAD = envd("NOMAD", "no")
+K8S = envd("K8S", "")
+NOMAD = envd("NOMAD", "")
 
 #puts "os: " + OS
 case OS
