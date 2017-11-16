@@ -31,6 +31,8 @@ setenforce Permissive
 
 if [ -d /vagrant/home ]; then
   su ${VUSER} -c "cp -R /vagrant/home/. /home/${VUSER}/"
+   mkdir -p /root/.ssh/
+   cp /home/${VUSER}/.ssh/* /root/.ssh/
 fi
 
 echo DOCKER_PKG_REPO: $DOCKER_PKG_REPO
