@@ -49,7 +49,7 @@ end
 # -----------------------------------------------------
 Vagrant.configure(2) do |config|
 
-  (1..3).each do |i|
+  (1..6).each do |i|
     config.vm.define "v#{i}" do |node|
       node.vm.provision :shell, inline: "hostname v#{i}"
       node.vm.provision :shell, inline: "echo v#{i} > /etc/hostname"
