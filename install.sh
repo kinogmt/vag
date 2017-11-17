@@ -53,6 +53,11 @@ if [ $ID == centos ]; then
 fi
 $DNF install -y $PKGS
 
+# --- use devicemapper -------------------------
+if [ -f /usr/lib/systemd/system/docker.service ]; then
+  sed -e "s/\(ExecStart.*\)/\1 --storage-driver devicemapper/" /usr/lib/systemd/system/docker.service
+fi
+# ----------------------------------------------
 systemctl start docker
 systemctl enable docker
 systemctl start avahi-daemon
