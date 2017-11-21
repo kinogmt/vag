@@ -34,4 +34,10 @@ echo address=/s3-region1.cloudian.com/127.0.0.1
 echo address=/.s3-website-region1.cloudian.com/127.0.0.1
 echo address=/cmc.cloudian.com/127.0.0.1
 echo address=/s3-admin.cloudian.com/127.0.0.1
+echo address=/v1/$IP1
+echo address=/v2/$IP2
+echo address=/v3/$IP3
+echo address=/v4/$IP4
+echo address=/v5/$IP5
+echo address=/v6/$IP6
 
