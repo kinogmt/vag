@@ -19,6 +19,9 @@ else
   VUSER=$ID
 fi
 
+echo "$VUSER soft nproc unlimited" >> /etc/security/limits.d/20-nproc.conf
+echo "$VUSER hard nproc unlimited" >> /etc/security/limits.d/20-nproc.conf
+
 # --- epel and uis for centos ---
 if [ $ID == centos ]; then
   rpm -ivh https://dl.fedoraproject.org/pub/epel/7/x86_64/Packages/e/epel-release-7-11.noarch.rpm
