@@ -54,8 +54,10 @@ fi
 $DNF install -y $PKGS
 
 # --- use devicemapper -------------------------
-if [ -f /usr/lib/systemd/system/docker.service ]; then
-  sed -ie "s/\(ExecStart.*\)/\1 --storage-driver devicemapper/" /usr/lib/systemd/system/docker.service
+if [ $DOCKER_PKG_REPO == docker.com ]; then
+  if [ -f /usr/lib/systemd/system/docker.service ]; then
+    sed -ie "s/\(ExecStart.*\)/\1 --storage-driver devicemapper/" /usr/lib/systemd/system/docker.service
+  fi
 fi
 # ----------------------------------------------
 systemctl start docker
