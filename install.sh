@@ -19,8 +19,8 @@ else
   VUSER=$ID
 fi
 
-echo "$VUSER soft nproc unlimited" >> /etc/security/limits.d/20-nproc.conf
-echo "$VUSER hard nproc unlimited" >> /etc/security/limits.d/20-nproc.conf
+echo "$VUSER soft nproc 196608" >> /etc/security/limits.d/20-nproc.conf
+echo "$VUSER hard nproc 196608" >> /etc/security/limits.d/20-nproc.conf
 
 # --- epel and uis for centos ---
 if [ $ID == centos ]; then
