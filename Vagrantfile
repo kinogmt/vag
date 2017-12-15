@@ -91,7 +91,7 @@ Vagrant.configure(2) do |config|
     aws.ami = AMI
     aws.instance_type = AWSIT
 
-    aws.block_device_mapping = [{ "DeviceName" => "/dev/sda1", "Ebs.VolumeType" => "gp2", "Ebs.VolumeSize" => 50 }] # 50GB
+    aws.block_device_mapping = [{ "DeviceName" => "/dev/sda1", "Ebs.VolumeType" => "gp2", "Ebs.VolumeSize" => 70 }] # 70GB
 
     aws.security_groups = [AWSSG]
     aws.subnet_id = AWSSN
