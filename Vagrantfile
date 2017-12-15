@@ -74,7 +74,7 @@ Vagrant.configure(2) do |config|
     libvirt.uuid = 'AAAAAAAA-AAAA-AAAA-AAAA-AAAAAAAAAAAA'
     libvirt.cpus = 4
     libvirt.memory = 32768
-    libvirt.machine_virtual_size = 50 # 50GB
+    libvirt.machine_virtual_size = 70 # 70GB
   end
 
   config.vm.provider :aws do |aws, override|
