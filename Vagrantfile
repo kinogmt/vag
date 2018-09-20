@@ -51,6 +51,13 @@ end
 # -----------------------------------------------------
 Vagrant.configure(2) do |config|
 
+  # --- use fixed uuid for "v1" only ---
+  config.vm.define "v1" do |node|
+      node.vm.provider :libvirt do |libvirt|
+        libvirt.uuid = 'AAAAAAAA-AAAA-AAAA-AAAA-AAAAAAAAAAAA'
+      end
+  end
+
   (1..6).each do |i|
     config.vm.define "v#{i}" do |node|
       node.vm.provision :shell, inline: "hostname v#{i}"
