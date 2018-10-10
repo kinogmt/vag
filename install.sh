@@ -1,7 +1,6 @@
 #!/bin/sh
 
 RELF=/etc/os-release
-SYNC=/home/sync
 
 if [ -f $RELF ]; then
   source $RELF
@@ -20,6 +19,7 @@ if [ -d /home/vagrant ]; then
 else
   VUSER=$ID
 fi
+SYNC=/home/${VUSER}/sync
 
 echo "$VUSER soft nproc 196608" >> /etc/security/limits.d/20-nproc.conf
 echo "$VUSER hard nproc 196608" >> /etc/security/limits.d/20-nproc.conf
