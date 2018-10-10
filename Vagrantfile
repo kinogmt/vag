@@ -43,18 +43,22 @@ case OS
     LIBVIRTBOX = "fedora/28-atomic-host"
     AMI = AMIFEDORAATOMIC
     AWSUSER = "fedora"
+    SYNC = "/home/vagrant/sync"
   when "fedora" then
     LIBVIRTBOX = "fedora/28-cloud-base"
     AMI = AMIFEDORA
     AWSUSER = "fedora"
+    SYNC = "/home/vagrant/sync"
   when "centos-atomic" then
     LIBVIRTBOX = "centos/atomic-host"
     AMI = AMICENTOSATOMIC
     AWSUSER = "centos"
+    SYNC = "/home/centos/sync"
   else
     LIBVIRTBOX = "centos/7"
     AMI = AMICENTOS
     AWSUSER = "centos"
+    SYNC = "/home/centos/sync"
 end
 #puts "aws ssh user: " + AWSUSER
 
@@ -77,7 +81,7 @@ Vagrant.configure(2) do |config|
       node.vm.network "forwarded_port", guest: 22, host: 7221+i, id: "ssh"
       node.vm.network "forwarded_port", guest: 8443, host: 18442+i, id: "https"
       config.vm.synced_folder ".", "/vagrant", disabled: true
-      config.vm.synced_folder ".", "/home/sync", type: "rsync"
+      config.vm.synced_folder ".", SYNC, type: "rsync"
     end
   end
 
