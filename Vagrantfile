@@ -106,7 +106,6 @@ Vagrant.configure(2) do |config|
     override.nfs.functional = false
     override.vm.box = "dummy"
     override.vm.box_url = "https://github.com/mitchellh/vagrant-aws/raw/master/dummy.box"
-    puts "aws ssh user: " + AWSUSER
     override.ssh.username = AWSUSER
     override.ssh.private_key_path = KEYPATH
 
