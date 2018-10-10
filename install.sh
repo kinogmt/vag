@@ -1,6 +1,8 @@
 #!/bin/sh
 
 RELF=/etc/os-release
+SYNC=/home/sync
+
 if [ -f $RELF ]; then
   source $RELF
 else
@@ -32,8 +34,8 @@ fi
 sed -i 's/SELINUX=enforcing/SELINUX=disabled/' /etc/selinux/config
 setenforce Permissive
 
-if [ -d /vagrant/home ]; then
-  su ${VUSER} -c "cp -R /vagrant/home/. /home/${VUSER}/"
+if [ -d ${SYNC}/home ]; then
+  su ${VUSER} -c "cp -R ${SYNC}/home/. /home/${VUSER}/"
    mkdir -p /root/.ssh/
    cp /home/${VUSER}/.ssh/* /root/.ssh/
 fi
@@ -88,7 +90,7 @@ chmod +x /usr/local/bin/docker-compose
 if [ $ID == centos ]; then
   if [ ttt$K8S != ttt ]; then
     # --- kubernetese ---
-    $DNFMNG --add-repo /vagrant/kubernetes.repo
+    $DNFMNG --add-repo ${SYNC}/kubernetes.repo
     $DNF install -y kubelet kubeadm kubectl kubernetes-cni
     systemctl enable kubelet && systemctl start kubelet
   fi

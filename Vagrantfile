@@ -76,6 +76,8 @@ Vagrant.configure(2) do |config|
       # --- port forwarding for virtualbox --------------------
       node.vm.network "forwarded_port", guest: 22, host: 7221+i, id: "ssh"
       node.vm.network "forwarded_port", guest: 8443, host: 18442+i, id: "https"
+      config.vm.synced_folder ".", "/vagrant", disabled: true
+      config.vm.synced_folder ".", "/home/sync", type: "rsync"
     end
   end
 
