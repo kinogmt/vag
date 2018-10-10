@@ -43,12 +43,10 @@ case OS
     LIBVIRTBOX = "fedora/28-atomic-host"
     AMI = AMIFEDORAATOMIC
     AWSUSER = "fedora"
-    SYNC = "/home/vagrant/sync"
   when "fedora" then
     LIBVIRTBOX = "fedora/28-cloud-base"
     AMI = AMIFEDORA
     AWSUSER = "fedora"
-    SYNC = "/home/vagrant/sync"
   when "centos-atomic" then
     LIBVIRTBOX = "centos/atomic-host"
     AMI = AMICENTOSATOMIC
@@ -58,11 +56,11 @@ case OS
     LIBVIRTBOX = "centos/7"
     AMI = AMICENTOS
     AWSUSER = "centos"
-    SYNC = "/home/centos/sync"
   else
     puts "invalid OS name:" + OS + ":"
 end
-puts "aws ssh user: " + AWSUSER
+AWSSYNC = "/home/" + AWSUSER + "/sync"
+#puts "aws ssh user: " + AWSUSER
 
 # -----------------------------------------------------
 Vagrant.configure(2) do |config|
@@ -83,7 +81,7 @@ Vagrant.configure(2) do |config|
       node.vm.network "forwarded_port", guest: 22, host: 7221+i, id: "ssh"
       node.vm.network "forwarded_port", guest: 8443, host: 18442+i, id: "https"
       config.vm.synced_folder ".", "/vagrant", disabled: true
-      config.vm.synced_folder ".", SYNC, type: "rsync"
+      config.vm.synced_folder ".", "/home/vagrant/sync", type: "rsync"
     end
   end
 
@@ -104,6 +102,7 @@ Vagrant.configure(2) do |config|
 
   config.vm.provider :aws do |aws, override|
     override.nfs.functional = false
+    override.vm.synced_folder ".", AWSSYNC, type: "rsync"
     override.vm.box = "dummy"
     override.vm.box_url = "https://github.com/mitchellh/vagrant-aws/raw/master/dummy.box"
     override.ssh.username = AWSUSER
