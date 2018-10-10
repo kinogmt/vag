@@ -81,7 +81,7 @@ $ VAG_OS=fedora vagrant ssh v1
 ```
 | variable              | value                | default            |
 | --------------------- | -------------------- | ------------------ |
-| VAG_OS                | centos or fedora     | centos             |
+| VAG_OS                | centos, fedora, fedora-atomic, centos-atomic | centos             |
 | AWS_ACCESS_KEY_ID     | aws access key       | none               |
 | AWS_SECRET_ACCESS_KEY | aws secret key       | none               |
 | AWS_KEYPAIR_NAME      | aws key pair name    | none               |

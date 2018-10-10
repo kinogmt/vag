@@ -37,6 +37,14 @@ NOMAD = envd("NOMAD", "")
 
 #puts "os: " + OS
 case OS
+  when "fedora-atomic" then
+    LIBVIRTBOX = "fedora/28-atomic-host"
+    AMI = AMIFEDORA
+    AWSUSER = "fedora"
+  when "centos-atomic" then
+    LIBVIRTBOX = "centos/atomic-host"
+    AMI = AMIFEDORA
+    AWSUSER = "fedora"
   when "fedora" then
     LIBVIRTBOX = "fedora/28-cloud-base"
     AMI = AMIFEDORA
