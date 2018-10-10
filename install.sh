@@ -1,5 +1,10 @@
 #!/bin/sh
 
+if [ -d /ostree ] ; then
+    echo "ostree found: skipping installation..."
+    exit 0
+fi
+    
 RELF=/etc/os-release
 
 if [ -f $RELF ]; then
