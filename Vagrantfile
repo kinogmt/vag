@@ -59,11 +59,11 @@ case OS
   else
     puts "invalid OS name:" + OS + ":"
 end
-AWSSYNC = "/home/" + AWSUSER + "/sync"
 #puts "aws ssh user: " + AWSUSER
 
 # -----------------------------------------------------
 Vagrant.configure(2) do |config|
+  config.vm.synced_folder ".", "/vagrant", disabled: true
 
   # --- use fixed uuid for "v1" only ---
   config.vm.define "v1" do |node|
@@ -80,13 +80,12 @@ Vagrant.configure(2) do |config|
       # --- port forwarding for virtualbox --------------------
       node.vm.network "forwarded_port", guest: 22, host: 7221+i, id: "ssh"
       node.vm.network "forwarded_port", guest: 8443, host: 18442+i, id: "https"
-      config.vm.synced_folder ".", "/vagrant", disabled: true
-      config.vm.synced_folder ".", "/home/vagrant/sync", type: "rsync"
     end
   end
 
   config.vm.provider "virtualbox" do |v, override|
     override.vm.box = LIBVIRTBOX
+    override.vm.synced_folder ".", "/home/vagrant/sync", type: "rsync"
     v.cpus = 4
     v.memory = 16384
   end 
@@ -94,6 +93,7 @@ Vagrant.configure(2) do |config|
 
   config.vm.provider :libvirt do |libvirt, override|
     override.vm.box = LIBVIRTBOX
+    override.vm.synced_folder ".", "/home/vagrant/sync", type: "rsync"
     #libvirt.uuid = 'AAAAAAAA-AAAA-AAAA-AAAA-AAAAAAAAAAAA'
     libvirt.cpus = 4
     libvirt.memory = 32768
@@ -102,7 +102,7 @@ Vagrant.configure(2) do |config|
 
   config.vm.provider :aws do |aws, override|
     override.nfs.functional = false
-    override.vm.synced_folder ".", AWSSYNC, type: "rsync"
+    override.vm.synced_folder ".", "/home/" + AWSUSER + "/sync", type: "rsync"
     override.vm.box = "dummy"
     override.vm.box_url = "https://github.com/mitchellh/vagrant-aws/raw/master/dummy.box"
     override.ssh.username = AWSUSER
