@@ -1,10 +1,5 @@
 #!/bin/sh
 
-if [ -d /ostree ] ; then
-    echo "ostree found: skipping installation..."
-    exit 0
-fi
-    
 RELF=/etc/os-release
 
 if [ -f $RELF ]; then
@@ -24,7 +19,22 @@ if [ -d /home/vagrant ]; then
 else
   VUSER=$ID
 fi
+
+# --- sync files ---
 SYNC=/home/${VUSER}/sync
+if [ -d ${SYNC}/home ]; then
+  su ${VUSER} -c "cp -R ${SYNC}/home/. /home/${VUSER}/"
+   mkdir -p /root/.ssh/
+   cp /home/${VUSER}/.ssh/* /root/.ssh/
+fi
+
+# --- exit ostree based OS(atomic) ---
+if [ -d /ostree ] ; then
+    echo "ostree found: skipping installation..."
+    exit 0
+fi
+
+# --- package based installations for non ostree OS -----------------------------
 
 echo "$VUSER soft nproc 196608" >> /etc/security/limits.d/20-nproc.conf
 echo "$VUSER hard nproc 196608" >> /etc/security/limits.d/20-nproc.conf
@@ -38,12 +48,6 @@ fi
 # --- misc -------------------------
 sed -i 's/SELINUX=enforcing/SELINUX=disabled/' /etc/selinux/config
 setenforce Permissive
-
-if [ -d ${SYNC}/home ]; then
-  su ${VUSER} -c "cp -R ${SYNC}/home/. /home/${VUSER}/"
-   mkdir -p /root/.ssh/
-   cp /home/${VUSER}/.ssh/* /root/.ssh/
-fi
 
 echo DOCKER_PKG_REPO: $DOCKER_PKG_REPO
 if [ $DOCKER_PKG_REPO == docker.com ]; then
