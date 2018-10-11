@@ -29,12 +29,6 @@ if [ -d ${SYNC}/home ]; then
   chown root:${VUSER} /var/run/docker.sock
 fi
 
-# --- exit ostree based OS(atomic) ---
-if [ -d /ostree ] ; then
-    echo "ostree found: skipping installation..."
-    exit 0
-fi
-
 # --- package based installations for non ostree OS -----------------------------
 
 echo "$VUSER soft nproc 196608" >> /etc/security/limits.d/20-nproc.conf

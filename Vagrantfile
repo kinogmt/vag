@@ -32,8 +32,6 @@ DOCKER_PKG_REPO = envd("DOCKER_PKG_REPO", "docker.com")
 # docker.com: docker.com repository
 # os:         OS repository
 
-INSTALL = envd("INST", "install.sh")
-
 K8S = envd("K8S", "")
 NOMAD = envd("NOMAD", "")
 
@@ -43,19 +41,23 @@ case OS
     LIBVIRTBOX = "fedora/28-atomic-host"
     AMI = AMIFEDORAATOMIC
     AWSUSER = "fedora"
+    INSTALL = envd("INST", "install-atomic.sh")
   when "fedora" then
     LIBVIRTBOX = "fedora/28-cloud-base"
     AMI = AMIFEDORA
     AWSUSER = "fedora"
+    INSTALL = envd("INST", "install.sh")
   when "centos-atomic" then
     LIBVIRTBOX = "centos/atomic-host"
     AMI = AMICENTOSATOMIC
     AWSUSER = "centos"
     SYNC = "/home/centos/sync"
+    INSTALL = envd("INST", "install-atomic.sh")
   when "centos" then
     LIBVIRTBOX = "centos/7"
     AMI = AMICENTOS
     AWSUSER = "centos"
+    INSTALL = envd("INST", "install.sh")
   else
     puts "invalid OS name:" + OS + ":"
 end
