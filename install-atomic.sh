@@ -28,3 +28,18 @@ if [ -d ${SYNC}/home ]; then
   cp /home/${VUSER}/.ssh/* /root/.ssh/
   chown root:${VUSER} /var/run/docker.sock
 fi
+
+# --- repo for kubeadm ---
+cat <<EOF > /etc/yum.repos.d/virt7-kubernetes-110-candidate.repo
+[virt7-kubernetes-110-candidate]
+name=virt7-kubernetes-110-candidate
+baseurl=http://cbs.centos.org/repos/virt7-kubernetes-110-candidate/x86_64/os
+enabled=1
+gpgcheck=0
+EOF
+
+# --- install k8s-node, k8s-client and k8s-kubeadm ---
+rpm-ostree install kubernetes-node kubernetes-client kubernetes-kubeadm
+
+# --- reboot for rpm-ostree -----------------------------------
+systemctl reboot
