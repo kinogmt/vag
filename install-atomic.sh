@@ -47,4 +47,4 @@ rpm-ostree upgrade
 rpm-ostree install kubernetes-kubeadm
 
 # --- reboot for rpm-ostree -----------------------------------
-#systemctl reboot
+systemctl reboot
