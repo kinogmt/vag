@@ -52,22 +52,35 @@ done
 # --- reboot for rpm-ostree -----------------------------------
 systemctl reboot
 
-# === after reboot ======================================================
-# Commands below need to be run manually because of the reboot above.
+#########################################################################
+# Commands hereafter need to be run manually because of the reboot above.
+#########################################################################
 
+
+
+# === Commands after reboot for K8S MASTER ==========================
 # --- Initialize the cluster
 kubeadm reset
 systemctl enable --now kubelet
 kubeadm init --pod-network-cidr=10.244.0.0/16 --ignore-preflight-errors=all
-
 # --- Configure kubectl
 mkdir -p $HOME/.kube
 sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 sudo chown $(id -u):$(id -g) $HOME/.kube/config
-
 # --- Add hosts or configure master to run pods
 # By default, your cluster will not schedule pods on the master
 # for security reasons.
 # If you want to be able to schedule pods on the master,
 # e.g. for a single-machine Kubernetes cluster run:
 kubectl taint nodes --all node-role.kubernetes.io/master-
+
+
+# === Commands after reboot for K8S (non-master) NODES ==============
+# TOKEN and HASH should be defined manually using the values
+# from kubeadm init command by MASTER
+kubeadm reset
+systemctl enable kubelet --now
+kubeadm join cah-1.osas.lab:6443 --token $TOKEN \
+        --discovery-token-ca-cert-hash sha256:$HASH \
+        --ignore-preflight-errors=all
+
