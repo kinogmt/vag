@@ -40,6 +40,9 @@ gpgcheck=0
 EOF
 fi
 
+# --- upgrade first ---
+rpm-ostree upgrade
+
 # --- install kubeadm ---
 rpm-ostree install kubernetes-kubeadm
 
