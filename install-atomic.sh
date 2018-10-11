@@ -28,9 +28,3 @@ if [ -d ${SYNC}/home ]; then
   cp /home/${VUSER}/.ssh/* /root/.ssh/
   chown root:${VUSER} /var/run/docker.sock
 fi
-
-# --- exit ostree based OS(atomic) ---
-if [ -d /ostree ] ; then
-    echo "ostree found: skipping installation..."
-    exit 0
-fi
