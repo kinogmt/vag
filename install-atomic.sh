@@ -51,3 +51,14 @@ done
 
 # --- reboot for rpm-ostree -----------------------------------
 systemctl reboot
+
+# --- after reboot --------------------------------------------
+# Commands below need to be run manually because of the reboot above.
+# --- Initialize the cluster
+kubeadm reset
+systemctl enable --now kubelet
+kubeadm init --pod-network-cidr=10.244.0.0/16 --ignore-preflight-errors=all
+# --- Configure kubectl
+mkdir -p $HOME/.kube
+sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+sudo chown $(id -u):$(id -g) $HOME/.kube/config
