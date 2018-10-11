@@ -88,8 +88,8 @@ Vagrant.configure(2) do |config|
   config.vm.provider "virtualbox" do |v, override|
     override.vm.box = LIBVIRTBOX
     override.vm.synced_folder ".", "/home/vagrant/sync", type: "rsync"
-    v.cpus = 4
-    v.memory = 16384
+    v.cpus = 2
+    v.memory = 8192
   end 
 
 
