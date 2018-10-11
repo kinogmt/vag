@@ -9,11 +9,6 @@ else
   exit 1
 fi
 
-case $ID in
-  "centos") echo ::: centos; DNF=yum; DNFMNG=yum-config-manager;;
-  "fedora") echo ::: fedora; DNF=dnf; DNFMNG="dnf config-manager";;
-esac
-
 if [ -d /home/vagrant ]; then
   VUSER=vagrant
 else
@@ -45,6 +40,14 @@ rpm-ostree upgrade
 
 # --- install kubeadm ---
 rpm-ostree install kubernetes-kubeadm
+
+# --- SELinux labelling ---
+#  In order to use kubeadm with selinux in enforcing mode,
+#  create and set the context of /var/lib/etcd, /etc/kubernetes/pki,
+#  and /etc/cni/net.d:
+for i in {/var/lib/etcd,/etc/kubernetes/pki,/etc/kubernetes/pki/etcd,/etc/cni/net.d}; do
+    mkdir -p $i && chcon -Rt svirt_sandbox_file_t $i;
+done
 
 # --- reboot for rpm-ostree -----------------------------------
 systemctl reboot
