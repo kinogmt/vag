@@ -24,8 +24,9 @@ fi
 SYNC=/home/${VUSER}/sync
 if [ -d ${SYNC}/home ]; then
   su ${VUSER} -c "cp -R ${SYNC}/home/. /home/${VUSER}/"
-   mkdir -p /root/.ssh/
-   cp /home/${VUSER}/.ssh/* /root/.ssh/
+  mkdir -p /root/.ssh/
+  cp /home/${VUSER}/.ssh/* /root/.ssh/
+  chown root:${VUSER} /var/run/docker.sock
 fi
 
 # --- exit ostree based OS(atomic) ---
