@@ -9,5 +9,5 @@
 
 kubeadm reset
 systemctl enable kubelet --now
-kubeadm join $IP:6443 --token $TOKEN -discovery-token-ca-cert-hash sha256:$HASH --ignore-preflight-errors=all
+kubeadm join $IP:6443 --token $TOKEN --discovery-token-ca-cert-hash sha256:$HASH --ignore-preflight-errors=all
 
