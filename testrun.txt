@@ -9,14 +9,14 @@ livirt/qemu/kvm
 --------------
 centos         ok --     --
 fedora         ok --
-centos-atomic  ok error2 error3
+centos-atomic  ok error2 ok
 fedora-atomic  ok ok     ok
 
 virtbox/mac
 --------------
 centos         error5
 fedora         error5
-centos-atomic  error4 -> ok
+centos-atomic  error3 -> ok
 fedora-atomic  ok
 
 ========================
@@ -26,10 +26,7 @@ error1: error: Unpacking kubernetes-kubeadm-1.10.3-0.el7.x86_64: min-free-space-
 error2: failed to start kubelet service
 ---> fixed by SELInux permissive mode
 
-error3: kubectl error -> The connection to the server 192.168.121.112:6443 was refused - did you specify the right host or port?
-
-
-error4:
+error3:
 -bash-4.2# kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
 The connection to the server 10.0.2.15:6443 was refused - did you specify the right host or port?
 ---> fixed wiht "itbales -F; systemctl reboot"
