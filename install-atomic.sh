@@ -25,10 +25,10 @@ fi
 
 # --- repo for CentOS kubeadm ---
 if [ $ID == centos ]; then
-  cat <<EOF > /etc/yum.repos.d/virt7-kubernetes-110-candidate.repo
-[virt7-kubernetes-110-candidate]
-name=virt7-kubernetes-110-candidate
-baseurl=http://cbs.centos.org/repos/virt7-kubernetes-110-candidate/x86_64/os
+  cat <<EOF > /etc/yum.repos.d/virt7-kubernetes-110-release.repo
+[virt7-kubernetes-110-release]
+name=virt7-kubernetes-110-release
+baseurl=http://cbs.centos.org/repos/virt7-kubernetes-110-release/x86_64/os
 enabled=1
 gpgcheck=0
 EOF
