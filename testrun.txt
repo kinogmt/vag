@@ -1,0 +1,37 @@
+aws
+--------------
+centos         ok ok     ok
+fedora         ok ok     --
+centos-atomic  ok error1 ok
+fedora-atomic  ok ok     ok
+
+qemu
+--------------
+centos         ok --     --
+fedora         ok --
+centos-atomic  ok error2 error3
+fedora-atomic  ok ok     ok
+
+virtbox/mac
+--------------
+centos         error5
+fedora         --
+centos-atomic  error4
+fedora-atomic  ok
+
+========================
+error1: error: Unpacking kubernetes-kubeadm-1.10.3-0.el7.x86_64: min-free-space-percent '3%' would be exceeded, 108.0 MB more required
+--> fixed by updating AMI image(from ami-a06447da to ami-3bf1b444)
+
+error2: failed to start kubelet service
+---> fixed by SELInux permissive mode
+
+error3: kubectl error -> The connection to the server 192.168.121.112:6443 was refused - did you specify the right host or port?
+
+
+error4:
+-bash-4.2# kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
+The connection to the server 10.0.2.15:6443 was refused - did you specify the right host or port?
+
+error5: too slow for ant build mts-s3
+========================
