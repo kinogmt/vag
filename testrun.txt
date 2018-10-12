@@ -1,11 +1,11 @@
 aws
 --------------
 centos         ok ok     ok
-fedora         ok ok     --
+fedora         ok ok     ok
 centos-atomic  ok error1 ok
 fedora-atomic  ok ok     ok
 
-qemu
+livirt/qemu/kvm
 --------------
 centos         ok --     --
 fedora         ok --
@@ -15,7 +15,7 @@ fedora-atomic  ok ok     ok
 virtbox/mac
 --------------
 centos         error5
-fedora         --
+fedora         error5
 centos-atomic  error4
 fedora-atomic  ok
 
@@ -33,5 +33,5 @@ error4:
 -bash-4.2# kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
 The connection to the server 10.0.2.15:6443 was refused - did you specify the right host or port?
 
-error5: too slow for ant build mts-s3
+error5: too slow for ant to build mts-s3
 ========================
