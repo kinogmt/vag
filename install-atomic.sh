@@ -48,6 +48,8 @@ for i in {/var/lib/etcd,/etc/kubernetes/pki,/etc/kubernetes/pki/etcd,/etc/cni/ne
     mkdir -p $i && chcon -Rt svirt_sandbox_file_t $i;
 done
 
+# --- SELInux permissilve mode for now ------------------------
+setenforce 0
 # --- reboot for rpm-ostree -----------------------------------
 systemctl reboot
 
