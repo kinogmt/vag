@@ -1,16 +1,16 @@
 aws
 --------------
-centos         ok ok     ok
-fedora         ok ok     ok
-centos-atomic  ok error1 ok
-fedora-atomic  ok ok     ok
+centos         ok
+fedora         ok
+centos-atomic  error1 -> ok
+fedora-atomic  ok
 
 livirt/qemu/kvm
 --------------
-centos         ok --     --
-fedora         ok --
-centos-atomic  ok error2 ok
-fedora-atomic  ok ok     ok
+centos         --
+fedora         
+centos-atomic  error2 -> ok
+fedora-atomic  ok
 
 virtbox/mac
 --------------
