@@ -51,6 +51,7 @@ done
 # --- SELInux permissilve mode for now ------------------------
 setenforce 0
 sed -i s/SELINUX=enforcing/SELINUX=permissive/ /etc/sysconfig/selinux
+sed -i s/SELINUX=enforcing/SELINUX=permissive/ /etc/selinux/config
 # --- reboot for rpm-ostree -----------------------------------
 systemctl reboot
 
