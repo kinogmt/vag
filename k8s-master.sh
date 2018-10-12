@@ -18,3 +18,6 @@ sudo chown $(id -u):$(id -g) $HOME/.kube/config
 # e.g. for a single-machine Kubernetes cluster run:
 # ---
 kubectl taint nodes --all node-role.kubernetes.io/master-
+
+# --- Deploy the flannel network plugin
+kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
