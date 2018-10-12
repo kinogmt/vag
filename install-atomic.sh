@@ -21,7 +21,6 @@ if [ -d ${SYNC}/home ]; then
   su ${VUSER} -c "cp -R ${SYNC}/home/. /home/${VUSER}/"
   mkdir -p /root/.ssh/
   cp /home/${VUSER}/.ssh/* /root/.ssh/
-  chown root:${VUSER} /var/run/docker.sock
 fi
 
 # --- repo for CentOS kubeadm ---
