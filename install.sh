@@ -57,7 +57,9 @@ fi
 PKGS="$DOCKERPKG avahi bind-utils emacs-nox unzip rlwrap screen jq \
       openssl-devel curl-devel expat-devel ncurses-devel"
 if [ $ID == centos ]; then
-  PKGS="$PKGS git2u"
+    PKGS="$PKGS git2u"
+else
+    PKGS="$PKGS git"
 fi
 $DNF install -y $PKGS
 
