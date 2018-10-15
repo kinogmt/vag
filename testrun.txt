@@ -7,8 +7,8 @@ fedora-atomic  ok
 
 livirt/qemu/kvm
 --------------
-centos         --
-fedora         
+centos         ok
+fedora         ok
 centos-atomic  error2 -> ok
 fedora-atomic  ok
 
@@ -16,7 +16,7 @@ virtbox/mac
 --------------
 centos         error5
 fedora         error5
-centos-atomic  error3 -> ok
+centos-atomic  error3 -> ok(not very stable)
 fedora-atomic  ok
 
 ========================
