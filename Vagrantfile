@@ -110,6 +110,11 @@ Vagrant.configure(2) do |config|
     override.ssh.username = AWSUSER
     override.ssh.private_key_path = KEYPATH
 
+    aws.region_config AWSRG do |region|
+      region.spot_instance = true
+      region.spot_max_price = "0.020"
+    end
+
     aws.region = AWSRG
     aws.access_key_id = AKEY
     aws.secret_access_key = SKEY
