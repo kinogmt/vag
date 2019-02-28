@@ -18,7 +18,14 @@ $ dnf install vagrant vagrant-libvirt
 
 ```
 $ dnf install ruby-devel libffi-devel redhat-rpm-config libvirt-devel
+```
+
+```
 $ vagrant plugin install vagrant-aws
+```
+  or(for spot instance support)
+```
+$ vagrant plugin install vagrant-aws-mkubenka --plugin-version "0.7.2.pre.14"
 ```
 
 ## start centos on libvirt
