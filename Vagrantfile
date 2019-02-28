@@ -112,7 +112,7 @@ Vagrant.configure(2) do |config|
 
     aws.region_config AWSRG do |region|
       region.spot_instance = true
-      region.spot_max_price = "0.020"
+      region.spot_max_price = "0.8"
     end
 
     aws.region = AWSRG
