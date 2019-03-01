@@ -14,8 +14,8 @@ end
 # --- configuration paramters -------------------------
 OS = envd("VAG_OS", "centos")
 
-AMIFEDORA = envd("AWS_AMI_FEDORA", "ami-e754e298") # fedora 28/us-east-1
-AMICENTOS = envd("AWS_AMI_CENTOS", "ami-9887c6e7") # centos 7.5/us-east-1
+AMIFEDORA = envd("AWS_AMI_FEDORA", "ami-0ca275747dcc62c18") # fedora 29/us-east-1
+AMICENTOS = envd("AWS_AMI_CENTOS", "ami-02eac2c0129f6376b") # centos 7.5/us-east-1/1901_01
 AMIFEDORAATOMIC = envd("AWS_AMI_FEDORA_ATOMIC", "ami-095734cd6327f5b58") # fedora atomic 28/us-east-1
 AMICENTOSATOMIC = envd("AWS_AMI_CENTOS_ATOMIC", "ami-3bf1b444") # centos atomic 7/us-east-1
 AWSRG = envd("AWS_RG", "us-east-1")         # AWS region
