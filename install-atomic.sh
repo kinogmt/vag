@@ -38,7 +38,7 @@ fi
 rpm-ostree upgrade
 
 # --- install kubeadm ---
-rpm-ostree install kubernetes-kubeadm ethtool crictl
+rpm-ostree install kubernetes-kubeadm ethtool
 
 # --- SELinux labelling ---
 #  In order to use kubeadm with selinux in enforcing mode,
