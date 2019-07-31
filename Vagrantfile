@@ -17,10 +17,10 @@ OS = envd("VAG_OS", "centos")
 AMIFEDORA = envd("AWS_AMI_FEDORA", "ami-0ca275747dcc62c18") # fedora 29/us-east-1
 AMICENTOS = envd("AWS_AMI_CENTOS", "ami-02eac2c0129f6376b") # centos 7.5/us-east-1/1901_01
 AMIFEDORAATOMIC = envd("AWS_AMI_FEDORA_ATOMIC", "ami-0c97b936303859c89") # fedora atomic 29/us-east-1
-AMICENTOSATOMIC = envd("AWS_AMI_CENTOS_ATOMIC", "ami-3bf1b444") # centos atomic 7/us-east-1
+AMICENTOSATOMIC = envd("AWS_AMI_CENTOS_ATOMIC", "ami-a06447da") # centos atomic 7/us-east-1/7.1712.1
 AWSRG = envd("AWS_RG", "us-east-1")         # AWS region
-AWSSG = envd("AWS_SG", "sg-5389a22d")       # AWS security group/us-east-1
-AWSSN = envd("AWS_SN", "subnet-407eb41a")   # AWS subnet/us-east-1
+AWSSG = envd("AWS_SG", "sg-05525f5871576788b")       # AWS security group/us-east-1
+AWSSN = envd("AWS_SN", "subnet-0a0a41189aa786501")   # AWS subnet/us-east-1
 AWSIT = envd("AWS_IT", "m4.4xlarge")
 
 AKEY = envd("AWS_ACCESS_KEY_ID", "none")
