@@ -35,7 +35,7 @@ echo "$VUSER hard nproc 196608" >> /etc/security/limits.d/20-nproc.conf
 
 # --- epel and uis for centos ---
 if [ $ID == centos ]; then
-  rpm -ivh https://dl.fedoraproject.org/pub/epel/7/x86_64/Packages/e/epel-release-7-12.noarch.rpm
+  rpm -ivh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
   rpm -ivh https://centos7.iuscommunity.org/ius-release.rpm
 fi
 
