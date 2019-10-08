@@ -97,7 +97,7 @@ Vagrant.configure(2) do |config|
     override.vm.box = LIBVIRTBOX
     override.vm.synced_folder ".", "/home/vagrant/sync", type: "rsync"
     #libvirt.uuid = 'AAAAAAAA-AAAA-AAAA-AAAA-AAAAAAAAAAAA'
-    libvirt.cpus = 4
+    libvirt.cpus = 8
     libvirt.memory = 32768
     libvirt.machine_virtual_size = 70 # 70GB
   end
