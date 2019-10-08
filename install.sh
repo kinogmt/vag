@@ -76,6 +76,10 @@ systemctl enable docker
 systemctl start avahi-daemon
 systemctl enable avahi-daemon
 
+# --- stop unnecessary services ---
+systemctl stop postfix || true
+systemctl disable postfix || true
+
 if [ $DOCKERPKG == docker ]; then
   DR=dockerroot # old docker such as 1.12
 else
