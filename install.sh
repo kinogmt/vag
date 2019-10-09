@@ -41,7 +41,7 @@ fi
 
 # --- misc -------------------------
 sed -i 's/SELINUX=enforcing/SELINUX=disabled/' /etc/selinux/config
-setenforce Permissive
+setenforce Disasbled
 
 echo DOCKER_PKG_REPO: $DOCKER_PKG_REPO
 if [ $DOCKER_PKG_REPO == docker.com ]; then
