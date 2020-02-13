@@ -100,8 +100,8 @@ if [ $ID == centos ]; then
   if [ ttt$K8S != ttt ]; then
     # --- kubernetese ---
     $DNFMNG --add-repo ${SYNC}/kubernetes.repo
-    $DNF install -y kubelet kubeadm kubectl kubernetes-cni
-    systemctl enable kubelet && systemctl start kubelet
+    $DNF install -y kubelet kubeadm kubectl --disableexcludes=kubernetes
+    systemctl enable --now kubelet
   fi
 
   if [ ttt$NOMAD != ttt ]; then
