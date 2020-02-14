@@ -21,7 +21,7 @@ AMICENTOSATOMIC = envd("AWS_AMI_CENTOS_ATOMIC", "ami-a06447da") # centos atomic 
 AWSRG = envd("AWS_RG", "us-east-1")         # AWS region
 AWSSG = envd("AWS_SG", "sg-05525f5871576788b")       # AWS security group/us-east-1
 AWSSN = envd("AWS_SN", "subnet-0a0a41189aa786501")   # AWS subnet/us-east-1
-AWSIT = envd("AWS_IT", "m4.4xlarge")
+AWSIT = envd("AWS_IT", "m5.2xlarge") # 8 vcpu 32 GiB
 
 AKEY = envd("AWS_ACCESS_KEY_ID", "none")
 SKEY = envd("AWS_SECRET_ACCESS_KEY", "none")
