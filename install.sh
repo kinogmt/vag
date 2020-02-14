@@ -121,6 +121,7 @@ fi
 
 
 # --- network ---
+sysctl -w net.bridge.bridge-nf-call-iptables=1
 sysctl -w net.ipv6.conf.all.disable_ipv6=1
 sysctl -w net.ipv4.conf.all.forwarding=1
 sysctl -w net.ipv4.conf.all.route_localnet=1
