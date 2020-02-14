@@ -25,6 +25,7 @@ $ vagrant plugin install vagrant-aws
 ```
   or(for spot instance support)
 ```
+$ vagrant plugin uninstall vagrant-aws
 $ vagrant plugin install vagrant-aws-mkubenka --plugin-version "0.7.2.pre.22"
 ```
 
