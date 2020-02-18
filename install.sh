@@ -95,6 +95,13 @@ curl -L https://github.com/docker/compose/releases/download/1.25.0/docker-compos
 
 chmod +x /usr/local/bin/docker-compose
 
+# --- network ---
+sysctl -w net.bridge.bridge-nf-call-iptables=1
+sysctl -w net.ipv6.conf.all.disable_ipv6=1
+sysctl -w net.ipv4.conf.all.forwarding=1
+sysctl -w net.ipv4.conf.all.route_localnet=1
+sudo iptables -P FORWARD ACCEPT
+
 # --- centos only for now ---
 if [ $ID == centos ]; then
   if [ ttt$K8S != ttt ]; then
@@ -134,9 +141,3 @@ if [ $ID == centos ]; then
 fi
 
 
-# --- network ---
-sysctl -w net.bridge.bridge-nf-call-iptables=1
-sysctl -w net.ipv6.conf.all.disable_ipv6=1
-sysctl -w net.ipv4.conf.all.forwarding=1
-sysctl -w net.ipv4.conf.all.route_localnet=1
-sudo iptables -P FORWARD ACCEPT
