@@ -1,8 +1,9 @@
-export AWS_AMI_FEDORA="ami-0ca275747dcc62c18" # fedora 29/us-east-1
+export AWS_AMI_FEDORA="ami-0c830793775595d4b" # fedora 31/us-east-1
 export AWS_AMI_CENTOS="ami-02eac2c0129f6376b" # centos 7.5/us-east-1/1901_01
-export AWS_AMI_FEDORA_ATOMIC="ami-0c97b936303859c89" # fedora atomic 29/us-east-1
+export AWS_AMI_FEDORA_ATOMIC="ami-064e38c5a50a6c0d0" # fedora atomic 31/us-east-1
 export AWS_AMI_CENTOS_ATOMIC="ami-a06447da" # centos atomic 7/us-east-1/7.1712.1
 export AWS_RG=us-east-1         # AWS region
+export AWS_AZ=us-east-1a        # AWS availability zone
 export AWS_SG=sg-05525f5871576788b       # AWS security group/us-east-1
 export AWS_SN=subnet-0a0a41189aa786501   # AWS subnet/us-east-1
-export AWS_IT=m4.4xlarge
+export AWS_IT=m5.2xlarge

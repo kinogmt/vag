@@ -19,6 +19,7 @@ AMICENTOS = envd("AWS_AMI_CENTOS", "ami-02eac2c0129f6376b") # centos 7.5/us-east
 AMIFEDORAATOMIC = envd("AWS_AMI_FEDORA_ATOMIC", "ami-0c97b936303859c89") # fedora atomic 29/us-east-1
 AMICENTOSATOMIC = envd("AWS_AMI_CENTOS_ATOMIC", "ami-a06447da") # centos atomic 7/us-east-1/7.1712.1
 AWSRG = envd("AWS_RG", "us-east-1")         # AWS region
+AWSAZ = envd("AWS_AZ", "us-east-1a")        # AWS availability zone
 AWSSG = envd("AWS_SG", "sg-05525f5871576788b")       # AWS security group/us-east-1
 AWSSN = envd("AWS_SN", "subnet-0a0a41189aa786501")   # AWS subnet/us-east-1
 AWSIT = envd("AWS_IT", "m5.2xlarge") # 8 vcpu 32 GiB
@@ -116,6 +117,7 @@ Vagrant.configure(2) do |config|
     end
 
     aws.region = AWSRG
+    aws.availability_zone = AWSAZ
     aws.access_key_id = AKEY
     aws.secret_access_key = SKEY
     aws.keypair_name = KEYPAIR
