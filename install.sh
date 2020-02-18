@@ -102,6 +102,20 @@ if [ $ID == centos ]; then
     $DNFMNG --add-repo ${SYNC}/kubernetes.repo
     $DNF install -y kubelet kubeadm kubectl --disableexcludes=kubernetes
     systemctl enable --now kubelet
+    if [ $K8S == master ]; then
+      # --- init control plain ---
+      kubeadm init --pod-network-cidr 10.244.0.0/16
+      # --- setup kubeconfig -----
+      cp /etc/kubernetes/admin.conf /home/${VUSER}/
+      chown ${VUSER}:${VUSER} /home/${VUSER}/admin.conf
+      export KUBECONFIG=/home/${VUSER}/admin.conf
+      echo "export KUBECONFIG=~/admin.conf" >> /home/${VUSER}/.bashrc
+      # --- start flannel --------
+      BASE_URL=https://raw.githubusercontent.com/coreos/flannel/2140ac876ef134e0ed5af15c65e414cf26827915/Documentation
+      curl -sSL ${BASE_URL}/kube-flannel.yml |  kubectl create -f -
+      # remove dedicated taint to put workoer pods on master as well
+      kubectl taint nodes --all node-role.kubernetes.io/master-
+    fi
   fi
 
   if [ ttt$NOMAD != ttt ]; then
