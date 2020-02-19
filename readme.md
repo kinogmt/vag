@@ -29,6 +29,9 @@ $ vagrant plugin uninstall vagrant-aws
 $ vagrant plugin install vagrant-aws-mkubenka --plugin-version "0.7.2.pre.22"
 ```
 
+Note: For spot instance, 
+"Auto-assign public IPv4" for AWS VPC subnet needs to be set to yes.
+
 ## start centos on libvirt
 
 ```
