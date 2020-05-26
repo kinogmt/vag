@@ -44,7 +44,7 @@ case OS
     AWSUSER = "fedora"
     INSTALL = envd("INST", "install-atomic.sh")
   when "fedora" then
-    LIBVIRTBOX = "fedora/31-cloud-base"
+    LIBVIRTBOX = "fedora/30-cloud-base"
     AMI = AMIFEDORA
     AWSUSER = "fedora"
     INSTALL = envd("INST", "install.sh")
