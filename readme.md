@@ -7,16 +7,12 @@ It is supporting only AWS and libvert now.
 Note that k8s, nomad and consul are installed and started
 only on *CentOS* for now.
 
-## install packages for vagrant and libvirt plugin(kvm/qemu)
+## install packages for vagrant
 
 ```
-$ dnf install vagrant vagrant-libvirt
+$ dnf install vagrant
 ```
-  or download vagrant CentOS RPM package from https://www.vagrantup.com/downloads and
-```
-$ vagrant plugin install vagrant-libvirt
-```
-
+  or download vagrant CentOS RPM package from https://www.vagrantup.com/downloads.
 
 ## install pcakges for aws plugin
 
@@ -35,6 +31,17 @@ $ vagrant plugin install vagrant-aws-mkubenka --plugin-version "0.7.2.pre.24"
 
 Note: For spot instance, 
 "Auto-assign public IPv4" for AWS VPC subnet needs to be set to yes.
+
+## install libvirt plugin(kvm/qemu)
+
+```
+$ dnf install vagrant-libvirt
+```
+  or 
+```
+$ vagrant plugin install vagrant-libvirt
+```
+
 
 ## start centos on libvirt
 
