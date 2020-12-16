@@ -12,11 +12,9 @@ only on *CentOS* for now.
 ```
 $ dnf install vagrant vagrant-libvirt
 ```
-  or download vagrant binary from https://www.vagrantup.com/downloads and
+  or download vagrant CentOS RPM package from https://www.vagrantup.com/downloads and
 ```
-$ CONFIGURE_ARGS="with-libvirt-include=/usr/include/libvirt --with-libvirt-lib=/usr/lib64/libvirt" vagrant plugin install vagrant-libvirt
-
-
+$ vagrant plugin install vagrant-libvirt
 ```
 
 
