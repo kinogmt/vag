@@ -14,7 +14,7 @@ $ dnf install vagrant vagrant-libvirt
 ```
   or download vagrant binary from https://www.vagrantup.com/downloads and
 ```
-$ vagrant plugin install libvirt
+$ vagrant plugin install vagrant-libvirt
 ```
 
 
