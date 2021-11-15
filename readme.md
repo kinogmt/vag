@@ -7,6 +7,12 @@ It is supporting only AWS and libvert now.
 Note that k8s, nomad and consul are installed and started
 only on *CentOS* for now.
 
+NOTE:
+vagrant-aws-mkubenka does not work with vagrant 2.2.19.
+If you use vagrant-libvirt on 2.2.19(or later?),
+do not install vagrant-aws-mkubenka.
+
+
 ## install packages for vagrant
 
 ```
