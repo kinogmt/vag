@@ -91,6 +91,7 @@ Vagrant.configure(2) do |config|
     override.vm.synced_folder ".", "/home/vagrant/sync", type: "rsync"
     v.cpus = 2
     v.memory = 10240
+    v.customize ["modifyvm", :id, "--audio", "none"]
   end 
 
 
