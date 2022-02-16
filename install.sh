@@ -37,7 +37,7 @@ echo "$VUSER hard nproc 196608" >> /etc/security/limits.d/20-nproc.conf
 if [ $ID == centos ]; then
   rpm -ivh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
   # --- for git 2.x ---
-  rpm -ivh https://packages.endpoint.com/rhel/7/os/x86_64/endpoint-repo-1.7-1.x86_64.rpm
+  rpm -ivh https://packages.endpointdev.com/rhel/7/os/x86_64/endpoint-repo-1.7-1.x86_64.rpm
 
 fi
 
