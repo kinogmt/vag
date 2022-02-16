@@ -41,8 +41,10 @@ if [ $ID == centos ]; then
     https://repo.ius.io/ius-release-el7.rpm \
     https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
   GIT=git224
+  DNFOPTS="--enablerepo=ius"
 else
   GIT=git
+  DNFOPTS=""
 fi
 
 
@@ -63,7 +65,7 @@ fi
 
 PKGS="$DOCKERPKG avahi bind-utils emacs-nox unzip rlwrap screen jq \
       openssl-devel curl-devel expat-devel ncurses-devel $GIT"
-$DNF install -y $PKGS
+$DNF install -y $PKGS $DNFOPTS
 
 # --- use devicemapper -------------------------
 #    disable device mapper
