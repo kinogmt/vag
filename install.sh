@@ -35,9 +35,9 @@ echo "$VUSER hard nproc 196608" >> /etc/security/limits.d/20-nproc.conf
 
 # --- epel and uis for centos ---
 if [ $ID == centos ]; then
-  rpm -ivh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
   # --- for git 2.x ---
-  yum install \
+  # following installs ius as well as epel
+  $DNF install -y \
     https://repo.ius.io/ius-release-el7.rpm \
     https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
   GIT=git224
