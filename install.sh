@@ -37,9 +37,14 @@ echo "$VUSER hard nproc 196608" >> /etc/security/limits.d/20-nproc.conf
 if [ $ID == centos ]; then
   rpm -ivh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
   # --- for git 2.x ---
-  rpm -ivh https://packages.endpointdev.com/rhel/7/os/x86_64/endpoint-repo-1.7-1.x86_64.rpm
-
+  yum install \
+    https://repo.ius.io/ius-release-el7.rpm \
+    https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+  GIT=git224
+else
+  GIT=git
 fi
+
 
 # --- misc -------------------------
 sed -i 's/SELINUX=enforcing/SELINUX=disabled/' /etc/selinux/config
@@ -57,7 +62,7 @@ else
 fi
 
 PKGS="$DOCKERPKG avahi bind-utils emacs-nox unzip rlwrap screen jq \
-      openssl-devel curl-devel expat-devel ncurses-devel git"
+      openssl-devel curl-devel expat-devel ncurses-devel $GIT"
 $DNF install -y $PKGS
 
 # --- use devicemapper -------------------------
