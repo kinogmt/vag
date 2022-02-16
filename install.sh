@@ -46,7 +46,7 @@ else
   GIT=git
   DNFOPTS=""
 fi
-
+$DNF install -y $GIT $DNFOPTS
 
 # --- misc -------------------------
 sed -i 's/SELINUX=enforcing/SELINUX=disabled/' /etc/selinux/config
@@ -64,8 +64,8 @@ else
 fi
 
 PKGS="$DOCKERPKG avahi bind-utils emacs-nox unzip rlwrap screen jq \
-      openssl-devel curl-devel expat-devel ncurses-devel $GIT"
-$DNF install -y $PKGS $DNFOPTS
+      openssl-devel curl-devel expat-devel ncurses-devel"
+$DNF install -y $PKGS
 
 # --- use devicemapper -------------------------
 #    disable device mapper
