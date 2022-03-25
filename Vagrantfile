@@ -22,7 +22,7 @@ AWSRG = envd("AWS_RG", "us-east-1")         # AWS region
 AWSAZ = envd("AWS_AZ", "us-east-1a")        # AWS availability zone
 AWSSG = envd("AWS_SG", "sg-05525f5871576788b")       # AWS security group/us-east-1
 AWSSN = envd("AWS_SN", "subnet-0a0a41189aa786501")   # AWS subnet/us-east-1
-AWSIT = envd("AWS_IT", "m5.4xlarge") # 8 vcpu 32 GiB
+AWSIT = envd("AWS_IT", "r5.2xlarge") # 8 vcpu 64 GiB
 
 AKEY = envd("AWS_ACCESS_KEY_ID", "none")
 SKEY = envd("AWS_SECRET_ACCESS_KEY", "none")
