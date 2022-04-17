@@ -6,4 +6,4 @@ export AWS_RG=us-east-2         # AWS region
 export AWS_AZ=us-east-2c        # AWS availability zone
 export AWS_SG=sg-05ce980c141937e3b       # AWS security group/us-east-1
 export AWS_SN=subnet-00fd6bf6ec7783816   # AWS subnet/us-east-1
-export AWS_IT=m5.2xlarge
+export AWS_IT=r5.2xlarge
