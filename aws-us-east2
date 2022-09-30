@@ -1,3 +1,4 @@
+export AWS_AMI_ROCKY="ami-0ce24f7d9f52a2d88" # rocky 8.6/us-east-2
 export AWS_AMI_FEDORA="ami-04f8478f9bc7f1453" # fedora 31/us-east-2
 export AWS_AMI_CENTOS="ami-0f2b4fc905b0bd1f1" # centos 7.5/us-east-2/1901_01
 export AWS_AMI_FEDORA_ATOMIC="ami-01c5df4e7df34fe93" # fedora atomic 31/us-east-2

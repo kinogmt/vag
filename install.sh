@@ -10,6 +10,7 @@ else
 fi
 
 case $ID in
+  "rocky") echo ::: rocky; DNF=yum; DNFMNG=yum-config-manager;;
   "centos") echo ::: centos; DNF=yum; DNFMNG=yum-config-manager;;
   "fedora") echo ::: fedora; DNF=dnf; DNFMNG="dnf config-manager";;
 esac

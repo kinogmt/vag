@@ -14,6 +14,7 @@ end
 # --- configuration paramters -------------------------
 OS = envd("VAG_OS", "centos")
 
+AMIROCKY = envd("AWS_AMI_ROCKY", "ami-004b161a1cceb1ceb") # rocky 8.6/us-east-1
 AMIFEDORA = envd("AWS_AMI_FEDORA", "ami-0c830793775595d4b") # fedora 31/us-east-1
 AMICENTOS = envd("AWS_AMI_CENTOS", "ami-02eac2c0129f6376b") # centos 7.5/us-east-1/1901_01
 AMIFEDORAATOMIC = envd("AWS_AMI_FEDORA_ATOMIC", "ami-064e38c5a50a6c0d0") # fedora atomic 31/us-east-1
@@ -58,6 +59,11 @@ case OS
     LIBVIRTBOX = "centos/7"
     AMI = AMICENTOS
     AWSUSER = "centos"
+    INSTALL = envd("INST", "install.sh")
+  when "rocky" then
+    LIBVIRTBOX = "rockylinux/8"
+    AMI = AMIROCKY
+    AWSUSER = "rocky"
     INSTALL = envd("INST", "install.sh")
   else
     puts "invalid OS name:" + OS + ":"
