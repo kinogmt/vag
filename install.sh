@@ -10,7 +10,7 @@ else
 fi
 
 case $ID in
-  "rocky") echo ::: rocky; DNF=yum; DNFMNG=yum-config-manager;;
+  "rocky") echo ::: rocky; DNF=dnf; DNFMNG="dnf config-manager";;
   "centos") echo ::: centos; DNF=yum; DNFMNG=yum-config-manager;;
   "fedora") echo ::: fedora; DNF=dnf; DNFMNG="dnf config-manager";;
 esac
@@ -43,6 +43,11 @@ if [ $ID == centos ]; then
     https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
   GIT=git224
   DNFOPTS="--enablerepo=ius"
+# --- epel for rocky ---
+elif [ $ID == rocky ]; then
+  $DNF install -y epel-release
+  GIT=git
+  DNFOPTS="--enablerepo=epel"
 else
   GIT=git
   DNFOPTS=""
@@ -66,6 +71,7 @@ fi
 
 PKGS="$DOCKERPKG avahi bind-utils emacs-nox unzip rlwrap screen jq \
       openssl-devel curl-devel expat-devel ncurses-devel"
+echo installing $PKGS
 $DNF install -y $PKGS
 
 # --- use devicemapper -------------------------

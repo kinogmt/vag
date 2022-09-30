@@ -30,7 +30,7 @@ SKEY = envd("AWS_SECRET_ACCESS_KEY", "none")
 KEYPAIR = envd("AWS_KEYPAIR_NAME", "none")
 KEYPATH = envd("AWS_KEY_PATH", "~/.ssh/aws_ssh_key")
 
-DOCKER_PKG_REPO = envd("DOCKER_PKG_REPO", "docker.com")
+DOCKER_PKG_REPO = envd("DOCKER_PKG_REPO", "os")
 # docker.com: docker.com repository
 # os:         OS repository
 
