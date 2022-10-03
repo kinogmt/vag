@@ -61,7 +61,13 @@ setenforce 0
 echo DOCKER_PKG_REPO: $DOCKER_PKG_REPO
 if [ $DOCKER_PKG_REPO == docker.com ]; then
   # --- use docker.com official repo --------
-  curl -o docker-ce.repo https://download.docker.com/linux/${ID}/docker-ce.repo
+  # -- use "centos" repo for rocky --
+  if [ $ID == rocky ]; then
+    DCEREPOURL=https://download.docker.com/linux/centos/docker-ce.repo
+  else
+    DCEREPOURL=https://download.docker.com/linux/${ID}/docker-ce.repo
+  fi
+  curl -o docker-ce.repo $DCEREPOURL
   $DNFMNG --add-repo docker-ce.repo
   DOCKERPKG=docker-ce
 else

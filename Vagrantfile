@@ -30,7 +30,7 @@ SKEY = envd("AWS_SECRET_ACCESS_KEY", "none")
 KEYPAIR = envd("AWS_KEYPAIR_NAME", "none")
 KEYPATH = envd("AWS_KEY_PATH", "~/.ssh/aws_ssh_key")
 
-DOCKER_PKG_REPO = envd("DOCKER_PKG_REPO", "os")
+DOCKER_PKG_REPO = envd("DOCKER_PKG_REPO", "docker.com")
 # docker.com: docker.com repository
 # os:         OS repository
 
@@ -95,6 +95,7 @@ Vagrant.configure(2) do |config|
   config.vm.provider "virtualbox" do |v, override|
     override.vm.box = LIBVIRTBOX
     override.vm.synced_folder ".", "/home/vagrant/sync", type: "rsync"
+    override.disksize.size = '50GB'
     v.cpus = 2
     #v.memory = 10240
     v.memory = 8192
