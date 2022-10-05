@@ -135,7 +135,7 @@ it needs following option to enable experimental feature of Vagrant.
 export VAGRANT_EXPERIMENTAL="disks"
 ```
 
-An example line for Vagrantfile:
+Example Vagrantfile:
 ```
    config.vm.provider "virtualbox" do |v, override|
      override.vm.box = LIBVIRTBOX
