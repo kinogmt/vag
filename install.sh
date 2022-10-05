@@ -76,7 +76,7 @@ else
 fi
 
 PKGS="$DOCKERPKG avahi bind-utils emacs-nox unzip rlwrap screen jq \
-      openssl-devel curl-devel expat-devel ncurses-devel"
+      openssl-devel curl-devel expat-devel ncurses-devel make"
 echo installing $PKGS
 $DNF install -y $PKGS
 
