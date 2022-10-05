@@ -95,7 +95,8 @@ Vagrant.configure(2) do |config|
   config.vm.provider "virtualbox" do |v, override|
     override.vm.box = LIBVIRTBOX
     override.vm.synced_folder ".", "/home/vagrant/sync", type: "rsync"
-    # override.disksize.size = '50GB' ### not working? need some plugin?
+    # export VAGRANT_EXPERIMENTAL="disks" is necessary for following disk options
+    override.vm.disk :disk, size: "50GB", primary: true
     v.cpus = 2
     #v.memory = 10240
     v.memory = 8192
