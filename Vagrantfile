@@ -61,7 +61,7 @@ case OS
     AWSUSER = "centos"
     INSTALL = envd("INST", "install.sh")
   when "rocky" then
-    LIBVIRTBOX = "rockylinux/8"
+    LIBVIRTBOX = "rockylinux/9"
     AMI = AMIROCKY
     AWSUSER = "rocky"
     INSTALL = envd("INST", "install.sh")
