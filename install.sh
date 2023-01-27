@@ -41,7 +41,7 @@ if [ $ID == centos ]; then
   $DNF install -y \
     https://repo.ius.io/ius-release-el7.rpm \
     https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
-  GIT=git224
+  GIT=git236
   DNFOPTS="--enablerepo=ius"
 # --- epel for rocky ---
 elif [ $ID == rocky ]; then
