@@ -41,27 +41,32 @@ NOMAD = envd("NOMAD", "")
 case OS
   when "fedora-atomic" then
     LIBVIRTBOX = "fedora/28-atomic-host"
+    LIBVIRTVER = ">1.0"
     AMI = AMIFEDORAATOMIC
     AWSUSER = "fedora"
     INSTALL = envd("INST", "install-atomic.sh")
   when "fedora" then
     LIBVIRTBOX = "fedora/30-cloud-base"
+    LIBVIRTVER = ">1.0"
     AMI = AMIFEDORA
     AWSUSER = "fedora"
     INSTALL = envd("INST", "install.sh")
   when "centos-atomic" then
     LIBVIRTBOX = "centos/atomic-host"
+    LIBVIRTVER = ">1.0"
     AMI = AMICENTOSATOMIC
     AWSUSER = "centos"
     SYNC = "/home/centos/sync"
     INSTALL = envd("INST", "install-atomic.sh")
   when "centos" then
     LIBVIRTBOX = "centos/7"
+    LIBVIRTVER = ">1.0"
     AMI = AMICENTOS
     AWSUSER = "centos"
     INSTALL = envd("INST", "install.sh")
   when "rocky" then
     LIBVIRTBOX = "rockylinux/8"
+    LIBVIRTVER = ">1.0"
     AMI = AMIROCKY
     AWSUSER = "rocky"
     INSTALL = envd("INST", "install.sh")
@@ -94,6 +99,7 @@ Vagrant.configure(2) do |config|
 
   config.vm.provider "virtualbox" do |v, override|
     override.vm.box = LIBVIRTBOX
+    config.vm.box_version = LIBVIRTVER
     override.vm.synced_folder ".", "/home/vagrant/sync", type: "rsync"
     # export VAGRANT_EXPERIMENTAL="disks" is necessary for following disk options
     override.vm.disk :disk, size: "50GB", primary: true
