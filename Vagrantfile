@@ -66,7 +66,8 @@ case OS
     INSTALL = envd("INST", "install.sh")
   when "rocky" then
     LIBVIRTBOX = "rockylinux/8"
-    LIBVIRTVER = ">1.0"
+    # LIBVIRTVER = ">1.0"
+    LIBVIRTVER = "5.0.0" # 7.0.0 is not stable yet
     AMI = AMIROCKY
     AWSUSER = "rocky"
     INSTALL = envd("INST", "install.sh")
