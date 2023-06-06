@@ -10,10 +10,27 @@ else
 fi
 
 case $ID in
-  "rocky") echo ::: rocky; DNF=dnf; DNFMNG="dnf config-manager";;
-  "centos") echo ::: centos; DNF=yum; DNFMNG=yum-config-manager;;
-  "fedora") echo ::: fedora; DNF=dnf; DNFMNG="dnf config-manager";;
+  "centos") echo ::: centos; DNF=yum; DNFMNG=yum-config-manager; DISK=/dev/sda;;
+  "rocky") echo ::: rocky; DNF=dnf; DNFMNG="dnf config-manager"; DISK=/dev/vda;;
+  "fedora") echo ::: fedora; DNF=dnf; DNFMNG="dnf config-manager"; DISK=/dev/vda;;
 esac
+
+# === expand disk space ===
+(
+echo d # Delete partion 1
+echo n # Add a new partition
+echo p # Primary partition
+echo 1 # Partition number
+echo   # First sector (Accept default: 1)
+echo   # Last sector (Accept default: varies)
+echo n # do not remove the signature
+echo w # Write changes
+) |  fdisk ${DISK}
+partprobe ${DISK}
+xfs_growfs ${DISK}1
+df -h
+# =========================
+
 
 if [ -d /home/vagrant ]; then
   VUSER=vagrant
