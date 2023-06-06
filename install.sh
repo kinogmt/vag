@@ -76,9 +76,20 @@ else
 fi
 
 PKGS="$DOCKERPKG avahi bind-utils emacs-nox unzip rlwrap screen jq \
+      java-11-openjdk-devel \
       openssl-devel curl-devel expat-devel ncurses-devel make gcc"
 echo installing $PKGS
 $DNF install -y $PKGS
+
+# --- install rust -----------------------------
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --default-toolchain stable
+
+# --- install protocol buffer ------------------
+RELEASE_URL=https://github.com/protocolbuffers/protobuf/releases/download
+curl -L ${RELEASE_URL}/v21.6/protoc-21.6-linux-x86_64.zip -o protoc.zip
+sudo unzip -j protoc.zip bin/protoc -d /usr/local/bin
+rm protoc.zip
+
 
 # --- use devicemapper -------------------------
 #    disable device mapper
