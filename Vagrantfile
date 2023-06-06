@@ -12,7 +12,7 @@ def envd(name, default)
 end
 
 # --- configuration paramters -------------------------
-OS = envd("VAG_OS", "centos")
+OS = envd("VAG_OS", "rocky")
 
 AMIROCKY = envd("AWS_AMI_ROCKY", "ami-004b161a1cceb1ceb") # rocky 8.6/us-east-1
 AMIFEDORA = envd("AWS_AMI_FEDORA", "ami-0c830793775595d4b") # fedora 31/us-east-1
