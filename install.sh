@@ -99,7 +99,7 @@ echo installing $PKGS
 $DNF install -y $PKGS
 
 # --- install rust -----------------------------
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --default-toolchain stable
+su ${VUSER} -c "curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --default-toolchain stable"
 
 # --- install protocol buffer ------------------
 RELEASE_URL=https://github.com/protocolbuffers/protobuf/releases/download
