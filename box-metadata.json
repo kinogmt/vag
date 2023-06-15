@@ -1,0 +1,15 @@
+{
+  "name" : "rockylinux/8",
+  "description" : "Rocky Linux 8 7.0.0 Bugfix",
+  "versions" : [
+    {
+      "version" : "7.0.1-20221213.0",
+      "providers" : [
+        {
+          "name" : "virtualbox",
+          "url" : "https://dl.rockylinux.org/vault/rocky/8.7/images/x86_64//Rocky-8-Vagrant-Vbox-8.7-20230215.0.x86_64.box"
+        }
+      ]
+    }
+  ]
+}
