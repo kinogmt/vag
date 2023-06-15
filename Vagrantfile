@@ -65,9 +65,10 @@ case OS
     AWSUSER = "centos"
     INSTALL = envd("INST", "install.sh")
   when "rocky" then
-    LIBVIRTBOX = "rockylinux/8"
-    # LIBVIRTVER = ">1.0"
-    LIBVIRTVER = "5.0.0" # 7.0.0 is not stable yet
+    # LIBVIRTBOX = "rockylinux/8"
+    LIBVIRTBOX = "bento/rockylinux-8.7"
+    LIBVIRTVER = ">1.0"
+    # LIBVIRTVER = "5.0.0" # 7.0.0 is not stable yet
     AMI = AMIROCKY
     AWSUSER = "rocky"
     INSTALL = envd("INST", "install.sh")
