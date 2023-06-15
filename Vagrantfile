@@ -65,10 +65,10 @@ case OS
     AWSUSER = "centos"
     INSTALL = envd("INST", "install.sh")
   when "rocky" then
-    # LIBVIRTBOX = "rockylinux/8"
-    LIBVIRTBOX = "bento/rockylinux-8.7"
-    LIBVIRTVER = ">1.0"
-    # LIBVIRTVER = "5.0.0" # 7.0.0 is not stable yet
+    LIBVIRTBOX = "rockylinux/8"
+    # LIBVIRTBOX = "bento/rockylinux-8.7"
+    # LIBVIRTVER = ">1.0"
+    LIBVIRTVER = "7.0.0" # 7.0.0 is not stable yet
     AMI = AMIROCKY
     AWSUSER = "rocky"
     INSTALL = envd("INST", "install.sh")
@@ -101,7 +101,7 @@ Vagrant.configure(2) do |config|
 
   config.vm.provider "virtualbox" do |v, override|
     override.vm.box = LIBVIRTBOX
-    config.vm.box_version = LIBVIRTVER
+    override.vm.box_version = LIBVIRTVER
     override.vm.synced_folder ".", "/home/vagrant/sync", type: "rsync"
     # export VAGRANT_EXPERIMENTAL="disks" is necessary for following disk options
     override.vm.disk :disk, size: "50GB", primary: true
@@ -114,6 +114,7 @@ Vagrant.configure(2) do |config|
 
   config.vm.provider :libvirt do |libvirt, override|
     override.vm.box = LIBVIRTBOX
+    override.vm.box_version = LIBVIRTVER
     override.vm.synced_folder ".", "/home/vagrant/sync", type: "rsync"
     #libvirt.uuid = 'AAAAAAAA-AAAA-AAAA-AAAA-AAAAAAAAAAAA'
     libvirt.cpus = 8
