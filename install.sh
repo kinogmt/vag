@@ -16,16 +16,28 @@ case $ID in
 esac
 
 # === expand disk space ===
-(
-echo d # Delete partion 1
-echo n # Add a new partition
-echo p # Primary partition
-echo 1 # Partition number
-echo   # First sector (Accept default: 1)
-echo   # Last sector (Accept default: varies)
-echo n # do not remove the signature
-echo w # Write changes
-) |  fdisk ${DISK}
+if [ $ID == rocky ]; then
+  (
+  echo d # Delete partion 1
+  echo n # Add a new partition
+  echo p # Primary partition
+  echo 1 # Partition number
+  echo   # First sector (Accept default: 1)
+  echo   # Last sector (Accept default: varies)
+  echo n # do not remove the signature
+  echo w # Write changes
+  ) |  fdisk ${DISK}
+else
+  (
+  echo d # Delete partion 1
+  echo n # Add a new partition
+  echo p # Primary partition
+  echo 1 # Partition number
+  echo   # First sector (Accept default: 1)
+  echo   # Last sector (Accept default: varies)
+  echo w # Write changes
+  ) |  fdisk ${DISK}
+fi
 partprobe ${DISK}
 xfs_growfs ${DISK}1
 df -h
