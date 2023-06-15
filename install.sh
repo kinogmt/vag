@@ -84,6 +84,8 @@ fi
 $DNF install -y $GIT $DNFOPTS
 
 # --- misc -------------------------
+# some OS(bento rockylinux8.7) has "permissive", others has "enforcing"
+sed -i 's/SELINUX=permissive/SELINUX=disabled/' /etc/selinux/config
 sed -i 's/SELINUX=enforcing/SELINUX=disabled/' /etc/selinux/config
 setenforce 0
 
