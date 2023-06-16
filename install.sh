@@ -24,7 +24,6 @@ if [ $ID == rocky ]; then
   echo 2 # partition 2
   echo   # First sector (Accept default: varies)
   echo   # Last sector (Accept default: varies)
-  echo n # do not remove the signature
   echo w # Write changes
   ) |  fdisk ${DISK}
 else
