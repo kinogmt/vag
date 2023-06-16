@@ -121,7 +121,7 @@ Vagrant.configure(2) do |config|
     #libvirt.memory = 32768
     libvirt.memory = 40960
     libvirt.machine_virtual_size = 70 # 70GB
-    libvirt.loader = "/usr/share/OVMF/OVMF_CODE.fd"
+    libvirt.loader = "/usr/share/OVMF/OVMF_CODE.fd" ### necessary for UEFI boot(rocky 8.7 for example)
   end
 
   config.vm.provider :aws do |aws, override|
