@@ -18,11 +18,11 @@ esac
 # === expand disk space ===
 if [ $ID == rocky ]; then
   (
-  echo d # Delete partion 1
+  echo d # Delete partion
+  echo 2 # partition 2 - partion 1 is UEFI boot partition since rocky 8.7
   echo n # Add a new partition
-  echo p # Primary partition
-  echo 1 # Partition number
-  echo   # First sector (Accept default: 1)
+  echo 2 # partition 2
+  echo   # First sector (Accept default: varies)
   echo   # Last sector (Accept default: varies)
   echo n # do not remove the signature
   echo w # Write changes
@@ -39,7 +39,7 @@ else
   ) |  fdisk ${DISK}
 fi
 partprobe ${DISK}
-xfs_growfs ${DISK}1
+xfs_growfs ${DISK}2
 df -h
 # =========================
 
