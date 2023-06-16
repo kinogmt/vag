@@ -65,10 +65,10 @@ case OS
     AWSUSER = "centos"
     INSTALL = envd("INST", "install.sh")
   when "rocky" then
-    # LIBVIRTBOX = "rockylinux/8"
-    #LIBVIRTVER = "5.0.0" # 7.0.0 is not stable yet
-    LIBVIRTBOX = "bento/rockylinux-8.7"
-    LIBVIRTVER = ">1.0"
+    LIBVIRTBOX = "rockylinux/8"
+    LIBVIRTVER = "7.0.0" # 7.0.0 needs UEFI(see libvirt.loader below)
+    # LIBVIRTBOX = "bento/rockylinux-8.7"
+    # LIBVIRTVER = ">1.0"
     AMI = AMIROCKY
     AWSUSER = "rocky"
     INSTALL = envd("INST", "install.sh")
@@ -121,6 +121,7 @@ Vagrant.configure(2) do |config|
     #libvirt.memory = 32768
     libvirt.memory = 40960
     libvirt.machine_virtual_size = 70 # 70GB
+    libvirt.loader = "/usr/share/OVMF/OVMF_CODE.fd"
   end
 
   config.vm.provider :aws do |aws, override|
